@@ -1,0 +1,727 @@
+[
+  {
+    "path": ".env.example",
+    "sha256": "a17bbd031773819b42d4a1c2af0854f97cb25757605f38fbaa08a4e48f9f616e",
+    "size": 871
+  },
+  {
+    "path": ".gitignore",
+    "sha256": "63d517ac595818c68d1addf14a3c3fcc07f4f57e3f696b607223f98ab7dab7dc",
+    "size": 345
+  },
+  {
+    "path": "API.md",
+    "sha256": "139c4a63a537d450489597f96f30f04fcc8827e2d271521b7933d080a4af05cb",
+    "size": 11834
+  },
+  {
+    "path": "AUTH-SETUP.md",
+    "sha256": "0cfb7ebd227d8f1eb9cc76b954515955e2345c816249f9ab8d81f004465d38fd",
+    "size": 5119
+  },
+  {
+    "path": "BACKEND-COMPLETE-GUIDE.md",
+    "sha256": "e11d0e221d2a31c05eb10b4fffbeaa9b91e58babacd1edfe072c57034934be7c",
+    "size": 60941
+  },
+  {
+    "path": "backend/.mvn/wrapper/maven-wrapper.properties",
+    "sha256": "b0e7995e6522a43fb50b482c0ae81bf639fe7b290d11015c9cb3367f99f1bbb8",
+    "size": 166
+  },
+  {
+    "path": "backend/mvnw",
+    "sha256": "c31b9938f5f17e2608f068c50bb5ada01465c1d8039f7e729d6e2b70126d31d4",
+    "size": 11791
+  },
+  {
+    "path": "backend/mvnw.cmd",
+    "sha256": "bddeecd8b479696fb18394c3347cf6cd97ae87a2272d5cd20beb4cabe85f65fe",
+    "size": 8293
+  },
+  {
+    "path": "backend/pom.xml",
+    "sha256": "97d7c9964e42bd311e0d2b9e7f31b45a5503ee0632fa7202aa9a49b2f3f2d3d7",
+    "size": 2425
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/AdminAuthService.java",
+    "sha256": "4097d0c697b7797245eeb3f09fe51108b28f875cb521faea6a5f6075ad093c2a",
+    "size": 2515
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/Alias.java",
+    "sha256": "750387c8a6dd550157fc131e49435f9bc7e38e8e4e9b3d426629fb19571a75c9",
+    "size": 329
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/AliasRepo.java",
+    "sha256": "f21db2cc47854c834426bc3370cca9cc730b601a32f834b02881468ae2f87363",
+    "size": 197
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/ApiController.java",
+    "sha256": "9a83173640831f5aa381b27c41439e28640d7175c12fd8e8acf44ceb060c857a",
+    "size": 11485
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/ApiErrors.java",
+    "sha256": "4e201e42a361f8f17b8ef48bc95358c10aac4b40895d042011452b1767e9eacb",
+    "size": 568
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/AppNotification.java",
+    "sha256": "0327d364df78f231a251928b8c53d8017b15b6c12ced54ce8b194398a54c74b7",
+    "size": 414
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/AppUser.java",
+    "sha256": "41950322528adf0adf85f19ee8e70e4077e94e50fb783c194891f656804e912e",
+    "size": 491
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/AuthInterceptor.java",
+    "sha256": "a82aa9df9485b151b463bd0a7fc3e7fa3074da2026a0c50999207393b0380da7",
+    "size": 2800
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/AuthSession.java",
+    "sha256": "13ecf846d152d2a87651cdd4bbc8eb18baaa77ac9ee8575c0a4b13fde1355bbf",
+    "size": 254
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/AuthSessionRepo.java",
+    "sha256": "7a75b9df2b79015a86c66b4a57a9352e6be29020aec6ac9885da1a4c360d621e",
+    "size": 284
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/BasicValidation.java",
+    "sha256": "b81cbb81321e94ddb1cec6724d9f8edf46e4e9e00cfaaa350efda8485ff8836d",
+    "size": 1819
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/DataSeeder.java",
+    "sha256": "35e13900028af55eae91f1c50c99ad841be70fc730dfb93663d81bcd479a3feb",
+    "size": 2005
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/Department.java",
+    "sha256": "b9783e9192018cc392cbc6d4d70d25bac43bf32c8137bb9dfe67fa4ad19c4ef3",
+    "size": 440
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/DepartmentRepo.java",
+    "sha256": "f687aa447f75e837d4ec54b41a9b13c1340ec73793164d0067dbf652122864a0",
+    "size": 206
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/DisconnectedMailProvider.java",
+    "sha256": "f87301d9471886fd81ae7b7409ce946b45e7f00e266b631b441354395207f34f",
+    "size": 831
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/Employee.java",
+    "sha256": "d2d426140d43b1df5d4e8b6063934f3ea9e1a1b6e26c328ccaf461265da8cf32",
+    "size": 726
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/EmployeeRepo.java",
+    "sha256": "5c9426ec869dcfab07ffa253ff8d62b4e10d8987edbf6cef558f7aba5dcff5a7",
+    "size": 294
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/GmailSmtp.java",
+    "sha256": "c6491171835be8499ce24b4d4f183f1964cf872b72d16d0e4846050a03fb4fc5",
+    "size": 4189
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/HrController.java",
+    "sha256": "711c054e96f0bf1252e110f2b70587d8705e828c834cbaa715291809b052fef2",
+    "size": 4983
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/JwtService.java",
+    "sha256": "76bb4a54e1e446e68fce3effd55b2150ac63703696e7835d3b7bd303552ea94b",
+    "size": 3547
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/LocalMailBridge.java",
+    "sha256": "77f575a244e17b7a28dd0b24423a2cbbdefd17490fa929efaad5acf5d575a687",
+    "size": 7853
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/LoginAttempt.java",
+    "sha256": "567dda0fa6f1c57c3a130f7d688cab802f634c82805e147f3b7a85f5fe046bd0",
+    "size": 212
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/LoginAttemptRepo.java",
+    "sha256": "ebc344f6fd6af8aa680c1d0effd619c98272307ee70330a74d957fbd723f8ed7",
+    "size": 174
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/Mailbox.java",
+    "sha256": "a92c740b14fee0fb5fbdc70ef735fbdba99cdd2ab362d4e696937f57eee80a06",
+    "size": 465
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailboxRepo.java",
+    "sha256": "43ea1d6195608c716586a8e2d4467e3dacd36673cd5381b94ba98ae79a755a3c",
+    "size": 205
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailCalendarEvent.java",
+    "sha256": "aaa9eb67f9cfaa82ce9b09072b86b42abecaa5af0201c09c6335176ed5474a86",
+    "size": 474
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailCalendarEventRepo.java",
+    "sha256": "aed0c60c8225ec202525a246cb32f958e18c742bc90468c944c17e38da3ae913",
+    "size": 322
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailContact.java",
+    "sha256": "6c81a5693ca94ad566494057cdd1475fc3db635e2edc7849f56b97f08b793228",
+    "size": 464
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailContactRepo.java",
+    "sha256": "df2b427bb832451196baac9809e773f53d22f5686ffc7bc614b1df755022a480",
+    "size": 294
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailMfa.java",
+    "sha256": "98b121926c062de7563e9f3a7ac49e44bb59a29f1274eab3c05360e36bada440",
+    "size": 4915
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailMime.java",
+    "sha256": "e43140ab9a5eae8870dbea4812166eda2f5bf7c9ba7f75435d59673d0e9e7d25",
+    "size": 895
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailModulesController.java",
+    "sha256": "e03a77ddcad1b9b859ae87b5f233f587ee3deadf79920c291919b567aa086ec7",
+    "size": 5673
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailNamespace.java",
+    "sha256": "767fc5cb6ea3b0c4762679a3d86cf41d3418d78aab8e873270c52c846835778c",
+    "size": 122
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailNamespaceRepo.java",
+    "sha256": "626de23f41485f7156034f102ad07adb2f47b1b9d1d364053d002e420c2da34f",
+    "size": 328
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailPreference.java",
+    "sha256": "6ed501fdff6ae32460803898fc2f93a09e601a83bf542cc564247a5348b12eac",
+    "size": 456
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailPreferenceRepo.java",
+    "sha256": "8fe7f81a85596a5086d649ee4e13d99cdd5d400a7d94da03882737aea802596d",
+    "size": 152
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailProvider.java",
+    "sha256": "1ed7b6d1ed11073847f6b1604cd64211dae04ea70941fd0dc59147a6b6490444",
+    "size": 226
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailScheduler.java",
+    "sha256": "e76686586361a62a254245d912548e88300169269e49924307e3be33fbd4e81a",
+    "size": 1077
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailSecurity.java",
+    "sha256": "5b10209422e5e76cc6d8f535ab3dc9b336a6bc353ff72aff556d3e7ce2f26437",
+    "size": 415
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailSecurityController.java",
+    "sha256": "40aeb661db208670b7c7f69fadf7418c125a88b352595eadc91d8daeddbb36b6",
+    "size": 2730
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/MailSecurityRepo.java",
+    "sha256": "0834eda75040ab9fb1058b881481d8cf60841f0bdabf4872fbc8d6405c022b90",
+    "size": 307
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/NotificationRepo.java",
+    "sha256": "d39d7b809b1a6f340cb752cb267995da3f14a2f455826480d49c56867cb1e95c",
+    "size": 707
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/NotificationService.java",
+    "sha256": "73c01172d503d34ccb9baa795c676690f7fdcba9b1eb49f7d868fed6b092c2b2",
+    "size": 635
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/OrgController.java",
+    "sha256": "60ec6480a10f199e78268135d7110f2ca0da0934cb2a1540a4ed5f937cdfdc0a",
+    "size": 4900
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/RequestLogFilter.java",
+    "sha256": "e2e46dc1a456726c576093551c8b2b2b45b3af225b2091ce9badec9a16d6b104",
+    "size": 1919
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/UserRepo.java",
+    "sha256": "609f45daec27da25d5b3b19bd1c9f79ac4e22371f254e1845b024ca4d4ca89a2",
+    "size": 603
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebConfig.java",
+    "sha256": "ab97015d9965d01cd535c3e6df7184178ece915467c90adf9a3d87d32bdb9523",
+    "size": 1544
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailAttachment.java",
+    "sha256": "82de0543ab3e380155813cfa00561b45a2054e03a000c80abb0754bc8dddfb0f",
+    "size": 444
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailAttachmentRepo.java",
+    "sha256": "5dbe4f81b0a818845c80040360eb40d0f2efd16a2182c534c638a9b8bf4768f9",
+    "size": 536
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailAuth.java",
+    "sha256": "96350a48e1e76a5c6699d0ca6a41041b8da515ac634125e76981a20ed024ba8d",
+    "size": 5316
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailBodyLimitFilter.java",
+    "sha256": "853813f7a27b174a47d80be147e6d203861be4be5f874c7a7b689c74d357dc67",
+    "size": 1584
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailController.java",
+    "sha256": "e5bd905797e31e13f46dc4d716856152d961d64039bf235c53786f3ec902ee0c",
+    "size": 17796
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailDeletedCapture.java",
+    "sha256": "7b653bcb1b7ec2c0883356f27c87b649ba9d49ca878bba8357ae9fd09bcf6e68",
+    "size": 173
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailDeletedCaptureRepo.java",
+    "sha256": "4913c0fa95e54b0507d5f7a8f8b02ba72903baec617932a0bd495ddf8f9a41a7",
+    "size": 168
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailFiles.java",
+    "sha256": "00c15980c488704e06c04d4b55632004d6c463a50ddb2f3551361d3e37272495",
+    "size": 4046
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailMessage.java",
+    "sha256": "47aad4f618731a74b0f708c1a6e0b3315a80376c7e765d419b68d87bfc52ad29",
+    "size": 1337
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailMessageRepo.java",
+    "sha256": "2aae3930ededea0aed51d5c5fbfe932d9fe1e024e2a2a88f25ea7b469646be2a",
+    "size": 638
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailSession.java",
+    "sha256": "db031c1daffeacd7cd9c221a6ee1d60430bef0176004697a49eb20933aaa9a13",
+    "size": 321
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/WebmailSessionRepo.java",
+    "sha256": "2e2ac177dd243d730d05549476d60c9823221c1c4f4477ab1e84a3cd17bacd1b",
+    "size": 408
+  },
+  {
+    "path": "backend/src/main/java/com/xpertsedge/hrms/XpertsEdgeHrmsApplication.java",
+    "sha256": "c3b1d2d85e6d7d64af42c65f6eb009027c7044e186c63e01d46c54f60d622b7d",
+    "size": 380
+  },
+  {
+    "path": "backend/src/main/resources/application-gmail.properties",
+    "sha256": "5b98178aaf604e74d351639e4993d365aaa068147018b2475843f64c282a9211",
+    "size": 98
+  },
+  {
+    "path": "backend/src/main/resources/application-local-mail.properties",
+    "sha256": "1fdc8611b99602e812f0acf936888606de3c59ec5846e2d6a3f837db4d9dddf2",
+    "size": 148
+  },
+  {
+    "path": "backend/src/main/resources/application-mysql.properties",
+    "sha256": "b08fd606cedb13d0182fc9102be9fff86e77d65c9c78867558e05810be2278d5",
+    "size": 596
+  },
+  {
+    "path": "backend/src/main/resources/application-prod.properties",
+    "sha256": "b66dcbeae4afa90aef1a64adff64f560a436a67b3372209916a3fbed6b6bcded",
+    "size": 262
+  },
+  {
+    "path": "backend/src/main/resources/application.properties",
+    "sha256": "5e4b8f8b190e6f44c4a819d6da4005416965de17b42089b69ed1d9b6e98b4e4a",
+    "size": 1795
+  },
+  {
+    "path": "backend/src/main/resources/db/migration/V1__initial_schema.sql",
+    "sha256": "3eca4a08c555189647a45d45acfcfc12d1fa8dc33f9c61ba0f1c7977d3f5c951",
+    "size": 1586
+  },
+  {
+    "path": "backend/src/main/resources/db/migration/V2__notification_and_session_indexes.sql",
+    "sha256": "d6170f97efdeb4dcbe9d5b310a683c60a83b0cdfd0b69da417c4591902f8df27",
+    "size": 410
+  },
+  {
+    "path": "backend/src/main/resources/db/migration/V3__mail_integrity_constraints.sql",
+    "sha256": "2b11a2e5401dc65955e8bd4280456265352a72816934ebd17769c378dc0d4a60",
+    "size": 352
+  },
+  {
+    "path": "backend/src/main/resources/db/migration/V4__basic_hr_and_user_roles.sql",
+    "sha256": "7577cd0f7b09eebee515a7584b2425764d3eae29f165f8ecab3f2db8aff92f58",
+    "size": 1266
+  },
+  {
+    "path": "backend/src/main/resources/db/migration/V5__local_webmail.sql",
+    "sha256": "b42d5e8fed602b8c36a92552315e723829517eecc8549f038768f661e710966d",
+    "size": 962
+  },
+  {
+    "path": "backend/src/main/resources/db/migration/V6__mail_actions_and_attachments.sql",
+    "sha256": "1698a756797908f8125861aecf9e1d8ca980a54e3548d97a0db161d49599c9f8",
+    "size": 1656
+  },
+  {
+    "path": "backend/src/main/resources/db/migration/V7__personal_mail_modules.sql",
+    "sha256": "00f52de9b98489e2570daefd4c65cc7b124ef8d9b8bed9d064cc5502626df54c",
+    "size": 1679
+  },
+  {
+    "path": "backend/src/main/resources/db/mysql/V1__mysql_schema.sql",
+    "sha256": "6941b67da0dcc22cbf8ae52431d2b1a6fd9af4dba5b980e0d3c67919638e5a39",
+    "size": 3365
+  },
+  {
+    "path": "backend/src/main/resources/db/mysql/V2__local_webmail.sql",
+    "sha256": "9624899dcda1a4de664196c5d42e652fa645dc67eb1bfdbad7f0aebba327487c",
+    "size": 921
+  },
+  {
+    "path": "backend/src/main/resources/db/mysql/V3__mail_actions_and_attachments.sql",
+    "sha256": "594df2bc2d4dff9a156a35534659689b4f03cfd675c21018022052c4dd34e735",
+    "size": 1631
+  },
+  {
+    "path": "backend/src/main/resources/db/mysql/V4__personal_mail_modules.sql",
+    "sha256": "c6f5a9052ba0ec1cf46fbd577a57d059b7521d5e1f7e68c3e438ad89b2fa668c",
+    "size": 1623
+  },
+  {
+    "path": "backend/src/test/java/com/xpertsedge/hrms/ApplicationSchemaTest.java",
+    "sha256": "25f0eb586baff420b6e93f643ed6554184d491d7e61a47486c32cba8517006f2",
+    "size": 1204
+  },
+  {
+    "path": "backend/src/test/java/com/xpertsedge/hrms/ExistingDatabaseMigrationTest.java",
+    "sha256": "65a48037502382c5abda641b2bbf6bee665005a451dd5ff69a825e359e1edc2e",
+    "size": 2974
+  },
+  {
+    "path": "backend/src/test/java/com/xpertsedge/hrms/GmailSmtpTest.java",
+    "sha256": "d93a0851ad3bb113b6bed8f4b8782e3e4670305754533880a054b7ba385fcd77",
+    "size": 1881
+  },
+  {
+    "path": "backend/src/test/java/com/xpertsedge/hrms/HealthLoggingTest.java",
+    "sha256": "54c2accce6fb381a8b8be9a48508c32a2db5f4d95342e6c094e48e4d4e367311",
+    "size": 4866
+  },
+  {
+    "path": "backend/src/test/java/com/xpertsedge/hrms/MigrationTest.java",
+    "sha256": "1d6123473f3833b1ca82848645306446a6bf9705189538bf69df4bd95f3e35d2",
+    "size": 5320
+  },
+  {
+    "path": "backend/src/test/java/com/xpertsedge/hrms/MySqlSchemaTest.java",
+    "sha256": "71be02efc5122cce7413cd1cc458ec4aa13295025d1f4a96d94bdf4000990a16",
+    "size": 3333
+  },
+  {
+    "path": "backend/src/test/java/com/xpertsedge/hrms/WebmailFeaturesTest.java",
+    "sha256": "07fd6a6820175383fff3b3476c7e4cd409f3ecd6a2623c502610b2533c058512",
+    "size": 12924
+  },
+  {
+    "path": "backend/src/test/resources/legacy-hibernate-schema.sql",
+    "sha256": "0dd2cc7f4ec2cdfbb5a8b079ec92c6531ba1f4966da973356a729d24f17f9877",
+    "size": 1266
+  },
+  {
+    "path": "change-admin-password.ps1",
+    "sha256": "9b1d82acef7f8dcd7ffd9bef8729b18fee073e3fdff820ed4e74ade054cb27aa",
+    "size": 1794
+  },
+  {
+    "path": "check-api-client.mjs",
+    "sha256": "466b86ba68140b3794495e90ffdc3cae34134442d13b67fe30162a5f21e89ed6",
+    "size": 1597
+  },
+  {
+    "path": "check-api.ps1",
+    "sha256": "be80cd9db54a156ec96a557bdc020c82754f79ecf4ad687bd2459f55b46291b1",
+    "size": 4458
+  },
+  {
+    "path": "check-auth.mjs",
+    "sha256": "ccfa09cc2796bffcae43460d73cd36081e63826aff435ecbeda16975f2283b0a",
+    "size": 4217
+  },
+  {
+    "path": "check-basic-modules.mjs",
+    "sha256": "41206d8a23e62c50f7d3048205762fa61d96d96e62067415c7079d28da702578",
+    "size": 5258
+  },
+  {
+    "path": "check-local-mail-features.mjs",
+    "sha256": "53a445ff82e5f59f14369c860a1a4900ff4d22c84a1ee5db17b745130221c0f2",
+    "size": 15708
+  },
+  {
+    "path": "check-local-webmail.mjs",
+    "sha256": "e0443626f1deda5e8c66e95c338c4794a6e7e67d065b5b7714498f6d6172f3d8",
+    "size": 6452
+  },
+  {
+    "path": "check-mail-modules.mjs",
+    "sha256": "a7931227ae18cb0af7e0bff6954dd7ded9473bd69cd8b2c823384dc524fa798b",
+    "size": 6683
+  },
+  {
+    "path": "check-mail.mjs",
+    "sha256": "6cb917bf46457b96c1c64d0f0c4c25c1e9d4b2eb5ea97f40290c8cc40110bc7e",
+    "size": 4820
+  },
+  {
+    "path": "check-password-rotation.mjs",
+    "sha256": "062e0182f4357de2332477852ce5133f4f1c1372c90886312389223f0c43febf",
+    "size": 1574
+  },
+  {
+    "path": "check-production-auth.mjs",
+    "sha256": "8121111e7aa8a9c4e5e2e95bba730d7da8bd7bde80c04f89d1f28f57c946d44e",
+    "size": 1748
+  },
+  {
+    "path": "DATABASE-MIGRATIONS.md",
+    "sha256": "4d91ec41caa5a943e2ca2eae6866b063dba37a9883d268f55639670b7bced770",
+    "size": 5359
+  },
+  {
+    "path": "frontend/index.html",
+    "sha256": "ad4d4858546291a708978ec313fdff550cf402800f0efacbf93c35426e5a5030",
+    "size": 493
+  },
+  {
+    "path": "frontend/package-lock.json",
+    "sha256": "b4b7ca3ed0f74c36f6e75621d594f4c511a745e7a80a2c547b23d980afc51874",
+    "size": 57266
+  },
+  {
+    "path": "frontend/package.json",
+    "sha256": "4cbcc4e330dfa3f11b8b916320a16a1ea91a8e0eb1640dcb017f1e769b241778",
+    "size": 321
+  },
+  {
+    "path": "frontend/public/logo-full.png",
+    "sha256": "817f4132a63f263c3490e7340fe78628ebade39569a4c57d15cc6c5fa4781b07",
+    "size": 75582
+  },
+  {
+    "path": "frontend/public/logo.png",
+    "sha256": "2a855f0ab40ffd1bd06b9d6094196dd0d464d4b108983b4574048e045825539b",
+    "size": 43225
+  },
+  {
+    "path": "frontend/src/api.js",
+    "sha256": "84a9ed71547ced3302eed59a5ba1a19f5ba5c068bde550832eee03b775847988",
+    "size": 1304
+  },
+  {
+    "path": "frontend/src/App.jsx",
+    "sha256": "e64dd895577b7f9c8be3a362ff85f34d464025b134e86cfc96eab10dc556e196",
+    "size": 24848
+  },
+  {
+    "path": "frontend/src/BasicModules.jsx",
+    "sha256": "9ac000a008079d51d43e6edd1c0303f18c4c24daa54396d74ad03b5c7866fad6",
+    "size": 10898
+  },
+  {
+    "path": "frontend/src/brand-colors.css",
+    "sha256": "a13b45f311fcfdde38be5a5d69613364c305dbaffcd629b1c532a768a49e971e",
+    "size": 3460
+  },
+  {
+    "path": "frontend/src/icons.js",
+    "sha256": "feedf140e230faee0f7eccbd0d9735a0a071eb71e1c8dfac39309b090b60e5d0",
+    "size": 2170
+  },
+  {
+    "path": "frontend/src/mail-model.mjs",
+    "sha256": "700d5a813a52ef018d293f468f43404e07d00727db16917aaa2a86bf34ac1ddd",
+    "size": 1905
+  },
+  {
+    "path": "frontend/src/MailModules.jsx",
+    "sha256": "45eec9ac2b54a4df89cbd1bf512ce8e90e666132b7e806036586d4dd2624ca87",
+    "size": 5507
+  },
+  {
+    "path": "frontend/src/MailSecurityPanel.jsx",
+    "sha256": "974747c6eca2a842d3f0ef46196f8ef9e8fcde895537adc8ebc97306147913eb",
+    "size": 2138
+  },
+  {
+    "path": "frontend/src/main.jsx",
+    "sha256": "cdab715c75325e40ec2159381564149797255f42cb7954dd53d77a3e8d7ac332",
+    "size": 180
+  },
+  {
+    "path": "frontend/src/styles.css",
+    "sha256": "b80de0e0a25b3c6b8179602028f0f3a1b78f7f94d4f111de606cbd094a6abd6e",
+    "size": 17167
+  },
+  {
+    "path": "frontend/src/webmail.css",
+    "sha256": "9403ff9c06c95396505a58480e507c7e44a21a6538d9905de3a51de38c7e4702",
+    "size": 21694
+  },
+  {
+    "path": "frontend/src/Webmail.jsx",
+    "sha256": "f154a3b30a9d428ae1c607535cb26e977be94cd965d82bba1af824725e5c5ec4",
+    "size": 29533
+  },
+  {
+    "path": "frontend/test/api.test.mjs",
+    "sha256": "fc7d7fdfeb437e2b958ee6493164a89fc03086a77a07ec261c8925475ef53116",
+    "size": 2716
+  },
+  {
+    "path": "frontend/test/mail-model.test.mjs",
+    "sha256": "43eb46948d9b0e1c43d3c560d18f109bc65ae32d05f7f907f64bc7b8d79c7c0d",
+    "size": 2519
+  },
+  {
+    "path": "frontend/vite.config.js",
+    "sha256": "53ba50f75854784614658386525d2058e8e52eaeac2fe57d9e097ef077d7198e",
+    "size": 201
+  },
+  {
+    "path": "GIT-PUSH.md",
+    "sha256": "8dcacfffa797029ca2a38bf438b97a7370f3ee0acff07b866d9989e499f959e2",
+    "size": 2343
+  },
+  {
+    "path": "GMAIL-SMTP.md",
+    "sha256": "631cd3d2d67918373406cfceca32af2ce65be9d71591e7dcafb88df83863b4e1",
+    "size": 4054
+  },
+  {
+    "path": "HANDOVER.md",
+    "sha256": "e2220be2dc229ebf85f42c59a267c7a48f35f0dfec0f98e35650483a058dc565",
+    "size": 4696
+  },
+  {
+    "path": "HEALTH-LOGGING.md",
+    "sha256": "304438066b38235fbd910dcdfcbcd8866aa9d2254561a03783e19213a0e310e0",
+    "size": 3477
+  },
+  {
+    "path": "java-runtime.mjs",
+    "sha256": "2524044202af6a2763a22fa7cf52b5c1c80418ccdd1d0ae4f26b265a9fd77658",
+    "size": 542
+  },
+  {
+    "path": "KNOWN-LIMITATIONS.md",
+    "sha256": "38826d5c0f2ac4e5db2f0f1f8eb2ac024aaa01f36ae26c70237584f73bb5c389",
+    "size": 3779
+  },
+  {
+    "path": "LOCAL-MAIL.md",
+    "sha256": "da293b9d43582e78e3220eb4797ac9dce4547f307a49d76a95b5f10613978d62",
+    "size": 9198
+  },
+  {
+    "path": "MAIL-PROVIDER-INTEGRATION.md",
+    "sha256": "438247cf677e88b50959bae50721c657b8adb37ecdcc5eee00a7279274baf4ad",
+    "size": 1479
+  },
+  {
+    "path": "MYSQL-SETUP.md",
+    "sha256": "c57a4e167f03289f83f87fbe09c89095ad75e9947c64405e7e92816eb77904d8",
+    "size": 5390
+  },
+  {
+    "path": "package-source.ps1",
+    "sha256": "46ed115fec898680b7d2d1feda24625cda3f1e41eb86a2c9e72098cca03cbe29",
+    "size": 3204
+  },
+  {
+    "path": "package.json",
+    "sha256": "0fa06255992395c8a107da389e85fd01f9ba17030d35503d1e3b6454ceccab2b",
+    "size": 110
+  },
+  {
+    "path": "README.md",
+    "sha256": "e14e9110e92b183455fc59cf43f3cb2313a54dbb0b3e6cb106c0b2a0e4a9215c",
+    "size": 4799
+  },
+  {
+    "path": "run-password-rotation.mjs",
+    "sha256": "e81d21569078d615357b0e6eabcb56a724eaa559f6d6d73689435529e2e100f2",
+    "size": 2108
+  },
+  {
+    "path": "start-gmail.ps1",
+    "sha256": "bdc88e73ca8d0843b7e1fda9b779c954efbd3dc2becb91aa1dc8f67cd64c7276",
+    "size": 1644
+  },
+  {
+    "path": "start-local-mail.ps1",
+    "sha256": "f110da5c7db26476f71697514073d9a01592b5f1252f094c0ea823ca0adde835",
+    "size": 1837
+  },
+  {
+    "path": "start-mysql.ps1",
+    "sha256": "4b06e1e68243491189d17d08962617886cbb31d71fad4b0cf462fa8354e391bd",
+    "size": 1796
+  },
+  {
+    "path": "TEST-RESULTS.md",
+    "sha256": "4d15db4ea529b2b1d80a22f72c76c5025f2b1d837c96cf13f8fc1538f6add8cc",
+    "size": 11025
+  },
+  {
+    "path": "TESTING.md",
+    "sha256": "92440464f177eebbd32a62b57d6b5ae66a2891877839ab5765267fbee8065de7",
+    "size": 3144
+  },
+  {
+    "path": "verification-results.json",
+    "sha256": "4ceda8044ebe0408d7b8a2efcafd079c6131ab23a07f44a907e0a1f950b9eeff",
+    "size": 1561
+  },
+  {
+    "path": "verify.mjs",
+    "sha256": "48e2ba6b5abf2ba8277475e0ddc184250fffe331856e6ef3ca9b5d3b30035a8a",
+    "size": 2183
+  }
+]

@@ -1,0 +1,14 @@
+CREATE TABLE gmail_account (
+  mailbox_id BIGINT PRIMARY KEY,
+  gmail_address VARCHAR(254) NOT NULL,
+  refresh_token_cipher VARCHAR(1024) NOT NULL,
+  history_id VARCHAR(40) NULL,
+  last_sync_at TIMESTAMP(6) NULL DEFAULT NULL,
+  connected_at TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  last_error VARCHAR(200) NOT NULL DEFAULT '',
+  CONSTRAINT uq_gmail_account_address UNIQUE (gmail_address),
+  CONSTRAINT fk_gmail_account_mailbox FOREIGN KEY (mailbox_id) REFERENCES mailbox(id) ON DELETE CASCADE
+);
+ALTER TABLE webmail_message ADD COLUMN gmail_message_id VARCHAR(64) NULL;
+ALTER TABLE webmail_message ADD COLUMN gmail_thread_id VARCHAR(64) NULL;
+CREATE INDEX ix_webmail_message_gmail ON webmail_message(owner_id, gmail_message_id);

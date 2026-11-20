@@ -1,0 +1,570 @@
+/* ==========================================================================
+   XpertsEdge Mail — webmail.css (modern, Gmail-like)
+   Scoped to .wm-app / .wm-login so HRMS styles are not affected.
+   Edit colours in the TOKENS section only.
+   ========================================================================== */
+
+/* ---------- TOKENS (light) ---------- */
+.wm-app,.wm-login{
+  --primary:#166534;
+  --on-primary:#fff;
+  --soft:#DDF0E4;
+  --page:#F3F6F4;
+  --card:#fff;
+  --line:#E3EBE6;
+  --ink:#10231A;
+  --mut:#566A5F;
+  --avatar:#1E3A6E;
+  --read-bg:#F6F9F7;
+  --hover:#EAF3EE;
+  --star:#EAB308;
+  --danger:#B91C1C;
+  --compose-bg:#C7EBD3;
+  --compose-ink:#0F4A27;
+  --shadow:0 1px 3px rgba(16,35,26,.08),0 6px 18px rgba(16,35,26,.05);
+  --shadow-lg:0 24px 64px rgba(16,35,26,.25);
+  --radius:20px;
+
+  /* inline icon masks (used for toolbar glyphs) */
+  --ico-menu:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M4 6h16M4 12h16M4 18h16'/%3E%3C/svg%3E");
+  --ico-moon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10Z'/%3E%3C/svg%3E");
+  --ico-sun:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5'/%3E%3C/svg%3E");
+  --ico-info:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5M12 8h.01'/%3E%3C/svg%3E");
+
+  color:var(--ink);
+  background:var(--page);
+  color-scheme:light;
+  font:14px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+/* ---------- TOKENS (dark) ---------- */
+.wm-app.wm-theme-dark{
+  --primary:#4ADE80;
+  --on-primary:#0E1512;
+  --soft:#1F3A2B;
+  --page:#0E1512;
+  --card:#16201B;
+  --line:#2A3A32;
+  --ink:#E6F0EA;
+  --mut:#9DB0A5;
+  --read-bg:#121B17;
+  --hover:#1D2B24;
+  --star:#FACC15;
+  --danger:#FCA5A5;
+  --compose-bg:#245238;
+  --compose-ink:#D5F5E0;
+  --shadow:0 1px 3px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3);
+  --shadow-lg:0 24px 64px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+/* ---------- BASE ---------- */
+.wm-app *,.wm-app *::before,.wm-app *::after,
+.wm-login *,.wm-login *::before,.wm-login *::after{box-sizing:border-box}
+.wm-app button,.wm-app input,.wm-app textarea,.wm-app select,
+.wm-login button,.wm-login input{font:inherit}
+.wm-app button,.wm-login button{cursor:pointer;color:inherit}
+.wm-app button:disabled,.wm-login button:disabled{cursor:not-allowed;opacity:.6}
+.wm-app label{margin:0;font-weight:400}
+.wm-app :focus-visible,.wm-login :focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wm-app svg{flex:none}
+.wm-app input[type=checkbox],.wm-login input[type=checkbox]{
+  flex:0 0 18px;width:18px;height:18px;min-width:18px;margin:0;padding:0;accent-color:var(--primary);cursor:pointer}
+
+/* ---------- SHELL ---------- */
+.wm-app.wm-dark{
+  display:grid;grid-template-columns:84px 264px minmax(0,1fr);
+  height:100dvh;overflow:hidden;background:var(--page)}
+.wm-scrim{display:none}
+
+/* ---------- LEFT ICON RAIL ---------- */
+.wm-rail{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:14px 8px;background:var(--card);border-right:1px solid var(--line);
+  min-height:0;overflow-y:auto}
+.wm-rail>button,.wm-rail-bottom>button{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  width:68px;min-height:56px;padding:6px 2px;border:0;border-radius:14px;
+  background:transparent;color:var(--mut);font-size:11px;font-weight:500;line-height:1.1}
+.wm-rail>button svg,.wm-rail-bottom>button svg{width:22px;height:22px}
+.wm-rail>button:hover,.wm-rail-bottom>button:hover{background:var(--hover);color:var(--primary)}
+.wm-rail>button.active{background:var(--soft);color:var(--primary);font-weight:700}
+.wm-rail>.wm-logo-button{min-height:60px;margin-bottom:12px}
+.wm-rail>.wm-logo-button:hover{background:transparent}
+.wm-logo-button img{width:44px;height:44px;object-fit:contain}
+.wm-logo-button span{display:none}
+.wm-rail-bottom{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:auto}
+
+/* ---------- SIDEBAR ---------- */
+.wm-sidebar{
+  display:flex;flex-direction:column;min-width:0;min-height:0;overflow-y:auto;
+  padding:18px 14px;background:var(--card);border-right:1px solid var(--line)}
+.wm-compose-button{
+  display:inline-flex;align-items:center;gap:12px;align-self:flex-start;
+  height:52px;margin:0 0 20px;padding:0 24px 0 18px;border:0;border-radius:26px;
+  background:var(--compose-bg);color:var(--compose-ink);
+  font-size:15px;font-weight:700;box-shadow:var(--shadow);
+  transition:box-shadow .2s,transform .2s}
+.wm-compose-button:hover{box-shadow:0 3px 10px rgba(16,35,26,.22);transform:translateY(-1px)}
+.wm-compose-button svg{width:20px;height:20px}
+.wm-section-title{display:none}
+.wm-sidebar nav{display:grid;gap:2px;margin:0}
+.wm-sidebar nav button{
+  display:flex;align-items:center;gap:14px;width:100%;min-height:44px;
+  padding:0 14px;border:0;border-radius:22px;background:transparent;
+  color:var(--ink);font-size:14px;text-align:left}
+.wm-sidebar nav button>span:not(.wm-folder-icon){flex:1}
+.wm-sidebar nav button:hover{background:var(--hover)}
+.wm-sidebar nav button.active{background:var(--soft);font-weight:700;color:var(--primary)}
+.wm-folder-icon{display:grid;place-items:center}
+.wm-sidebar nav svg{width:20px;height:20px}
+.wm-sidebar nav b{
+  min-width:24px;height:22px;padding:0 7px;border-radius:11px;
+  background:var(--primary);color:var(--on-primary);
+  font-size:12px;font-weight:700;display:grid;place-items:center}
+/* coloured folder icons */
+.wm-folder-Inbox{color:#3B82F6}.wm-folder-Drafts{color:#8B5CF6}.wm-folder-Scheduled{color:#06B6D4}
+.wm-folder-Sent{color:#22C55E}.wm-folder-Archive{color:#64748B}.wm-folder-Spam{color:#EF4444}
+.wm-folder-Trash{color:#78716C}
+.wm-theme-dark .wm-folder-Archive{color:#94A3B8}.wm-theme-dark .wm-folder-Trash{color:#A8A29E}
+.wm-sidebar-bottom{margin-top:auto;padding:14px 14px 0;color:var(--mut);font-size:12.5px}
+.wm-sidebar-bottom small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px}
+.wm-connection{display:none}
+
+/* ---------- MAIN / TOPBAR ---------- */
+.wm-mail-main{display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden;background:var(--page)}
+.wm-toolbar{
+  display:flex;align-items:center;gap:14px;flex:none;
+  padding:20px 28px 16px;background:var(--page)}
+.wm-toolbar>button{
+  display:grid;place-items:center;flex:none;width:44px;height:44px;padding:0;
+  border:0;border-radius:50%;background:transparent;color:var(--mut)}
+.wm-toolbar>button:hover{background:var(--hover);color:var(--primary)}
+.wm-collapse span,.wm-theme-toggle{font-size:0}
+.wm-collapse span{display:block;width:22px;height:22px;background:currentColor;
+  -webkit-mask:var(--ico-menu) center/contain no-repeat;mask:var(--ico-menu) center/contain no-repeat}
+.wm-theme-toggle::before{content:"";display:block;width:22px;height:22px;background:currentColor;
+  -webkit-mask:var(--ico-moon) center/contain no-repeat;mask:var(--ico-moon) center/contain no-repeat}
+.wm-theme-dark .wm-theme-toggle::before{
+  -webkit-mask-image:var(--ico-sun);mask-image:var(--ico-sun)}
+.wm-search{
+  display:flex;align-items:center;gap:12px;flex:1;min-width:0;height:52px;padding:0 18px;
+  border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--mut);
+  box-shadow:none}
+.wm-search>svg{width:20px;height:20px}
+.wm-search input{flex:1;min-width:0;height:100%;box-sizing:border-box!important;padding:0!important;border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important;-webkit-appearance:none;appearance:none;background:transparent!important;
+  color:var(--ink);font-size:15px}
+.wm-search input::placeholder{color:var(--mut)}
+.wm-search:focus-within{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary)}
+.wm-avatar{
+  display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:50%;
+  background:var(--primary);color:var(--on-primary);font-size:15px;font-weight:700}
+
+/* ---------- LIST AREA ---------- */
+.wm-split{flex:1;min-height:0;overflow-y:auto;padding:0 28px 28px;display:block}
+.wm-message-list{
+  position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--card);box-shadow:var(--shadow)}
+.wm-list-heading{
+  display:flex;flex-direction:column;align-items:flex-start;gap:12px;
+  padding:22px 24px 12px;border-bottom:1px solid var(--line)}
+.wm-list-heading>div:first-child{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.wm-list-heading h1{margin:0;font-size:26px;font-weight:700;letter-spacing:-.4px;color:var(--ink)}
+.wm-list-heading>div:first-child>span{color:var(--mut);font-size:14px}
+.wm-tabs{display:flex;gap:4px}
+.wm-tabs button{
+  height:40px;padding:0 18px;border:0;border-radius:20px;background:transparent;
+  color:var(--mut);font-size:14px;font-weight:500}
+.wm-tabs button:hover{background:var(--hover)}
+.wm-tabs button.active{background:var(--soft);color:var(--primary);font-weight:700}
+.wm-status{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 24px 0;padding:10px 14px;
+  border-radius:12px;background:var(--soft);color:var(--ink);font-size:13px;overflow-wrap:anywhere}
+.wm-status[role=alert]{background:#FEE2E2;color:#7F1D1D}
+.wm-theme-dark .wm-status[role=alert]{background:#4A1D1D;color:#FECACA}
+
+/* "Select loaded" sits in the heading row; becomes a full bar once something is selected */
+.wm-bulk{
+  position:absolute;top:98px;right:24px;transform:translateY(-50%);
+  display:flex;align-items:center;justify-content:flex-end;gap:8px;color:var(--mut);font-size:14px}
+.wm-bulk label{display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer;white-space:nowrap}
+.wm-bulk:has(.btn){
+  position:static;transform:none;flex-wrap:wrap;justify-content:flex-start;
+  padding:8px 24px;border-bottom:1px solid var(--line);background:var(--read-bg);font-size:13px}
+.wm-bulk .btn{min-height:36px;padding:0 14px;border-radius:18px;text-transform:capitalize}
+
+/* ---------- ROWS ---------- */
+.wm-drafts{display:block}
+.wm-select-row{
+  position:relative;display:flex;align-items:center;gap:6px;min-width:0;min-height:86px;
+  padding:0 0 0 14px;background:var(--read-bg);transition:background .15s}
+.wm-select-row+.wm-select-row{border-top:1px solid var(--line)}
+.wm-select-row.wm-unread{background:var(--card)}
+.wm-select-row.wm-unread::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--primary)}
+.wm-select-row:hover,.wm-select-row:focus-within{background:var(--hover)}
+.wm-select-row>input[type=checkbox]{margin:0 13px}
+.wm-star-button{
+  display:grid;place-items:center;flex:none;width:44px;height:44px;padding:0;border:0;
+  border-radius:50%;background:transparent;color:var(--mut)}
+.wm-star-button:hover{background:var(--soft)}
+.wm-star-button svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+.wm-star-button[aria-pressed=true]{color:var(--star)}
+.wm-star-button[aria-pressed=true] svg{fill:currentColor}
+
+.wm-draft-row{
+  position:relative;display:flex;align-items:center;gap:14px;flex:1 1 0;min-width:0;
+  min-height:86px;padding:12px 20px 12px 6px;border:0;background:transparent;
+  color:var(--ink);text-align:left;cursor:pointer}
+.wm-message-avatar{
+  display:grid;place-items:center;flex:none;width:46px;height:46px;border-radius:50%;
+  background:var(--avatar);color:#fff;font-size:14px;font-weight:700}
+.wm-draft-row>span:nth-child(2){display:grid;gap:2px;min-width:0;flex:1}
+.wm-draft-row strong,.wm-subject,.wm-draft-row small{
+  display:block;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wm-draft-row strong{font-size:16px;font-weight:500;color:var(--ink)}
+.wm-subject{font-size:15px;font-weight:400;color:var(--ink)}
+.wm-draft-row small{font-size:14px;color:var(--primary)}
+.wm-unread .wm-draft-row strong{font-weight:700}
+.wm-unread .wm-subject{font-weight:700}
+.wm-draft-row time{flex:none;min-width:70px;text-align:right;font-size:13.5px;font-weight:500;color:var(--mut);white-space:nowrap}
+
+/* Gmail-style quick actions: replace the time on hover / keyboard focus */
+.wm-quick-actions{position:absolute;right:14px;top:50%;transform:translateY(-50%);display:none;align-items:center;gap:2px}
+.wm-select-row:hover .wm-quick-actions,.wm-select-row:focus-within .wm-quick-actions{display:flex}
+.wm-select-row:hover time,.wm-select-row:focus-within time{visibility:hidden}
+.wm-quick-actions button{
+  display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;
+  background:transparent;color:var(--mut)}
+.wm-quick-actions button:hover{background:var(--soft);color:var(--primary)}
+.wm-quick-actions svg{width:20px;height:20px}
+
+.wm-comfortable .wm-select-row,.wm-comfortable .wm-draft-row{min-height:100px}
+.wm-load-older{display:block;margin:18px auto}
+
+/* ---------- EMPTY STATE ---------- */
+.wm-list-empty{padding:70px 20px;text-align:center;color:var(--mut)}
+.wm-list-empty>svg{
+  box-sizing:content-box;width:38px;height:38px;padding:23px;margin:0 auto 18px;display:block;
+  border-radius:50%;background:var(--soft);color:var(--primary)}
+.wm-list-empty h2{margin:0 0 6px;font-size:20px;color:var(--ink)}
+.wm-list-empty p{margin:0 auto;max-width:320px;font-size:14px}
+
+/* ---------- FOOTER INFO BOX ---------- */
+.wm-list-notice{
+  display:flex;align-items:center;gap:12px;margin:20px 0 0;padding:16px 20px;
+  border-radius:16px;background:var(--soft);color:var(--ink);font-size:14px}
+.wm-list-notice::before{
+  content:"";flex:none;width:20px;height:20px;background:var(--primary);
+  -webkit-mask:var(--ico-info) center/contain no-repeat;mask:var(--ico-info) center/contain no-repeat}
+
+/* ---------- READING PANE (replaces the list when a message is open) ---------- */
+.wm-reading-pane{display:none}
+.wm-split:has(.wm-draft-preview) .wm-message-list,
+.wm-split:has(.wm-draft-preview) .wm-list-notice{display:none}
+.wm-split:has(.wm-draft-preview) .wm-reading-pane{
+  display:block;padding:32px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--card);box-shadow:var(--shadow)}
+.wm-draft-preview{max-width:900px;margin:0 auto}
+.wm-draft-preview h2{margin:14px 0 18px;font-size:24px;line-height:1.35;letter-spacing:-.02em;color:var(--ink);overflow-wrap:anywhere}
+.wm-draft-preview>p{margin:6px 0;color:var(--mut);font-size:14px;overflow-wrap:anywhere}
+.wm-message-body{
+  margin:20px 0;padding:20px 0;border-top:1px solid var(--line);
+  font-size:15px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
+.wm-message-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.wm-delivery{display:inline-block;padding:4px 10px;border-radius:999px;background:var(--soft);color:var(--primary);font-size:12px;font-weight:600}
+.wm-delivery-failed{background:#FEE2E2;color:#991B1B}
+.wm-theme-dark .wm-delivery-failed{background:#4A1D1D;color:#FECACA}
+.wm-delivery-error{color:var(--danger)!important}
+.wm-reader-empty{text-align:center}
+.wm-reader-icon{display:grid;place-items:center;width:84px;height:84px;margin:0 auto 18px;border-radius:50%;background:var(--soft);color:var(--primary)}
+
+/* ---------- FILES / ATTACHMENTS ---------- */
+.wm-files{display:grid;gap:8px;margin:14px 0}
+.wm-files>a,.wm-files>div{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0;
+  padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);
+  color:var(--ink);font-size:13px;text-decoration:none;overflow-wrap:anywhere}
+.wm-files>a:hover{background:var(--hover)}
+.wm-files small{color:var(--mut);font-size:12px;white-space:nowrap}
+.wm-files button{border:0;background:none;color:var(--mut);padding:6px;min-width:32px;min-height:32px}
+
+/* ---------- BUTTONS ---------- */
+.wm-primary{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;
+  padding:0 24px;border:0;border-radius:22px;background:var(--primary);color:var(--on-primary);
+  font-size:14px;font-weight:600}
+.wm-primary:hover:not(:disabled){filter:brightness(1.12)}
+.wm-primary svg{width:18px;height:18px}
+.wm-app .btn{
+  display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;
+  border:1px solid var(--line);border-radius:20px;background:var(--card);color:var(--ink);
+  font-size:13px;font-weight:500}
+.wm-app .btn:hover:not(:disabled){background:var(--hover);border-color:var(--primary)}
+.wm-app .btn.danger{color:var(--danger);border-color:currentColor}
+.wm-text-button{border:0;background:none;color:var(--primary);padding:6px 4px;font-size:13px;font-weight:600}
+.wm-text-button:hover{text-decoration:underline}
+
+/* ---------- COMPOSER (fixed bottom-right, Gmail style) ---------- */
+.wm-composer{
+  position:fixed;right:28px;bottom:0;z-index:30;display:flex;flex-direction:column;
+  width:min(520px,calc(100vw - 32px));max-height:min(600px,calc(100dvh - 24px));overflow:hidden;
+  background:var(--card);color:var(--ink);border:1px solid var(--line);
+  border-radius:16px 16px 0 0;box-shadow:var(--shadow-lg)}
+.wm-composer>header{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none;
+  padding:6px 8px 6px 18px;background:var(--soft);border-bottom:1px solid var(--line)}
+.wm-composer h2{margin:0;font-size:14px;font-weight:600;color:var(--ink)}
+.wm-composer>header .wm-text-button{width:40px;height:40px;border-radius:50%;color:var(--mut);font-size:16px}
+.wm-composer>header .wm-text-button:hover{background:var(--card);text-decoration:none}
+.wm-composer form{display:flex;flex-direction:column;min-height:0;overflow:hidden;padding:0 18px}
+.wm-from{padding:12px 0;border-bottom:1px solid var(--line);color:var(--mut);font-size:13px;overflow-wrap:anywhere}
+.wm-from strong{margin-left:12px;color:var(--ink);font-weight:500}
+.wm-composer label{
+  display:flex;align-items:center;gap:12px;flex:none;min-height:46px;padding:4px 0;
+  border-bottom:1px solid var(--line);color:var(--mut);font-size:13px}
+.wm-composer label input:not([type=file]){
+  flex:1;min-width:0;height:36px;padding:0 4px;border:0;outline:0;background:none;color:var(--ink);font-size:14px}
+.wm-composer label input[type=datetime-local]{flex:0 1 auto;margin-left:auto;color-scheme:inherit}
+.wm-composer input::placeholder,.wm-composer textarea::placeholder{color:var(--mut)}
+.wm-composer textarea{
+  display:block;flex:1 1 150px;width:100%;min-height:150px;max-height:220px;resize:vertical;
+  padding:14px 0;border:0;outline:0;background:none;color:var(--ink);font-size:14px;line-height:1.65}
+.wm-composer select{
+  margin-left:auto;max-width:170px;min-height:36px;padding:0 10px;border:1px solid var(--line);
+  border-radius:10px;background:var(--card);color:var(--ink);font-size:13px}
+.wm-composer .wm-files{margin:8px 0}
+.wm-file-picker{flex-wrap:wrap}
+.wm-file-picker{position:relative;justify-content:space-between;cursor:pointer}
+.wm-file-picker input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.wm-attach-label{display:inline-flex;align-items:center;gap:8px;color:var(--mut)}
+.wm-attach-label svg{color:var(--primary)}
+.wm-file-select{display:inline-flex;align-items:center;min-height:32px;padding:0 13px;border-radius:16px;background:var(--soft);color:var(--primary);font-size:13px;font-weight:600}
+.wm-file-picker:hover .wm-file-select{background:var(--primary);color:var(--on-primary)}
+.wm-compose-note{flex:none;margin:10px 0;color:var(--mut);font-size:12px;overflow-wrap:anywhere}
+.wm-composer footer{
+  position:sticky;bottom:0;display:flex;align-items:center;flex-wrap:wrap;gap:10px;flex:none;
+  padding:12px 0;background:var(--card);border-top:1px solid var(--line);z-index:1}
+.wm-composer footer>.wm-text-button:last-child{margin-left:auto}
+
+/* ---------- LOGIN ---------- */
+.wm-login{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;min-height:100dvh;padding:28px 18px}
+.wm-login-card{
+  width:100%;max-width:400px;padding:30px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--card);box-shadow:var(--shadow)}
+.wm-login-brand{display:block;width:60px;height:60px;margin:0 auto 14px;padding:0;border:0;background:none}
+.wm-login-brand img{width:100%;height:100%;object-fit:contain}
+.wm-login-card h1{margin:6px 0;text-align:center;font-size:24px;color:var(--ink)}
+.wm-login-card>p{margin:0 0 22px;text-align:center;font-size:14px;color:var(--mut)}
+.wm-login-card label{display:block;margin:16px 0 7px;font-size:13px;font-weight:600;color:var(--ink)}
+.wm-login-card input:not([type=checkbox]){
+  width:100%;height:46px;padding:0 14px;border:1px solid var(--line);border-radius:12px;
+  background:var(--page);color:var(--ink);font-size:14px}
+.wm-login-card input::placeholder{color:var(--mut)}
+.wm-password{position:relative;display:flex}
+.wm-password input{padding-right:64px!important}
+.wm-password button{position:absolute;right:6px;top:3px;height:40px;padding:0 10px;border:0;background:none;color:var(--primary);font-size:13px;font-weight:600}
+.wm-remember{display:flex!important;align-items:center;gap:10px;margin:14px 0 0!important;font-weight:400!important;color:var(--mut)!important}
+.wm-login-card .wm-primary{width:100%;margin-top:22px;min-height:46px;border-radius:14px}
+.wm-login .err{min-height:20px;margin:10px 0 0;color:var(--danger);font-size:13px}
+.wm-provider-note{margin-top:8px;font-size:12px;line-height:1.7;text-align:center;color:var(--mut)}
+.wm-login-card>.wm-text-button{display:block;margin:12px auto 0}
+.wm-login>small{color:var(--mut);font-size:12px}
+.wm-connection-error{
+  position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:60;max-width:90vw;
+  padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:#fff;color:#10231A;font-size:13px;box-shadow:var(--shadow-lg)}
+.wm-connection-error button{margin-left:10px}
+
+/* ---------- MODULES (Calendar / Contacts / Files / Settings) ---------- */
+.wm-module{flex:1;min-height:0;overflow:auto;padding:8px 28px 28px;color:var(--ink)}
+.wm-module>header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+.wm-module h1{margin:0;font-size:24px}
+.wm-module h2{margin:0;font-size:17px}
+.wm-module-form{display:grid;gap:14px;max-width:620px;margin:20px 0}
+.wm-module-form label{display:grid;gap:6px;font-size:13px;color:var(--mut)}
+.wm-module-form label:has(input[type=checkbox]){display:flex;align-items:center;gap:10px}
+.wm-module-form input:not([type=checkbox]),.wm-module-form textarea,.wm-module-form select,.wm-security input{
+  min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
+.wm-module-form textarea{min-height:110px}
+.wm-module-form>div{display:flex;flex-wrap:wrap;gap:10px}
+.wm-module-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px}
+.wm-module-items article{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--card);box-shadow:var(--shadow)}
+.wm-module-items p{overflow-wrap:anywhere}
+.wm-module-items button{margin:4px 4px 0 0}
+.wm-module table{width:100%;max-width:640px;border-collapse:collapse}
+.wm-module td,.wm-module th{padding:10px;border-bottom:1px solid var(--line);text-align:left}
+.wm-security{max-width:620px;padding-top:20px;border-top:1px solid var(--line)}
+.wm-security label{display:grid;gap:6px;margin:12px 0}
+.wm-mfa-secret,.wm-security pre{overflow-wrap:anywhere;user-select:all}
+
+/* ---------- DESKTOP: collapsible sidebar ---------- */
+@media(min-width:761px){
+  .wm-app.wm-collapsed{grid-template-columns:84px minmax(0,1fr)}
+  .wm-app.wm-collapsed>.wm-sidebar{display:none}
+}
+
+/* ---------- TABLET ---------- */
+@media(max-width:1050px){
+  .wm-app.wm-dark{grid-template-columns:72px 232px minmax(0,1fr)}
+  .wm-app.wm-collapsed{grid-template-columns:72px minmax(0,1fr)}
+  .wm-rail>button,.wm-rail-bottom>button{width:60px}
+  .wm-toolbar{padding:16px 18px 12px}
+  .wm-split{padding:0 18px 18px}
+}
+
+/* ---------- PHONE ---------- */
+@media(max-width:760px){
+  .wm-app.wm-dark{display:block;height:100dvh}
+  /* rail becomes a bottom bar */
+  .wm-rail{
+    position:fixed;left:0;right:0;bottom:0;z-index:45;flex-direction:row;justify-content:space-around;
+    gap:0;height:calc(64px + env(safe-area-inset-bottom,0px));padding:4px 4px env(safe-area-inset-bottom,0px);
+    border-right:0;border-top:1px solid var(--line);overflow:hidden}
+  .wm-rail-bottom{display:contents}
+  .wm-rail>button,.wm-rail-bottom>button{width:auto;flex:1;min-width:44px;max-width:76px;min-height:56px;font-size:10px}
+  .wm-rail>.wm-logo-button{display:none}
+  /* sidebar slides in */
+  .wm-sidebar{
+    position:fixed;top:0;bottom:calc(64px + env(safe-area-inset-bottom,0px));left:0;z-index:50;
+    width:min(300px,86vw);padding-top:24px;box-shadow:14px 0 36px rgba(16,35,26,.22);
+    transition:transform .22s ease,visibility .22s}
+  .wm-collapsed .wm-sidebar{transform:translateX(-105%);visibility:hidden}
+  .wm-app:not(.wm-collapsed) .wm-sidebar{transform:none}
+  .wm-app:not(.wm-collapsed) .wm-scrim{
+    display:block;position:fixed;inset:0 0 calc(64px + env(safe-area-inset-bottom,0px)) 0;z-index:49;background:rgba(0,0,0,.4)}
+  .wm-mail-main{height:calc(100dvh - 64px - env(safe-area-inset-bottom,0px))}
+  .wm-toolbar{gap:8px;padding:12px}
+  .wm-search{height:46px;border-radius:14px;padding:0 14px}
+  .wm-search input{font-size:14px}
+  .wm-avatar{width:38px;height:38px}
+  .wm-split{padding:0 0 12px}
+  .wm-message-list{border-radius:0;border-left:0;border-right:0;box-shadow:none}
+  .wm-list-heading{padding:16px 14px 10px}
+  .wm-list-heading h1{font-size:22px}
+  .wm-bulk{position:static;transform:none;justify-content:flex-start;padding:4px 14px 0;border-bottom:1px solid var(--line)}
+  .wm-select-row{padding-left:6px;min-height:88px}
+  .wm-select-row>input[type=checkbox]{margin:0 8px}
+  .wm-star-button{width:40px}
+  .wm-message-avatar{width:40px;height:40px}
+  .wm-draft-row{gap:10px;padding-right:12px}
+  .wm-draft-row strong{font-size:15px}
+  .wm-subject{font-size:14px}
+  .wm-draft-row small{font-size:13px}
+  .wm-draft-row time{min-width:0;font-size:12px}
+  .wm-list-notice{margin:14px 12px 0;font-size:13px}
+  .wm-split:has(.wm-draft-preview) .wm-reading-pane{border-radius:0;border-left:0;border-right:0;padding:20px 16px;box-shadow:none}
+  .wm-composer{
+    right:12px;left:auto;width:min(520px,calc(100vw - 24px));bottom:12px;
+    max-height:min(620px,calc(100dvh - 24px));border-radius:16px}
+  .wm-module{padding:8px 14px 24px}
+}
+@media(max-width:430px){
+  .wm-theme-toggle{display:none!important}
+  .wm-star-button{display:none}
+  .wm-tabs button{padding:0 14px}
+}
+
+/* Touch devices: no hover actions, keep time visible */
+@media(hover:none){
+  .wm-quick-actions{display:none!important}
+  .wm-select-row:hover time{visibility:visible}
+}
+@media(prefers-reduced-motion:reduce){
+  .wm-app *,.wm-login *{transition:none!important;scroll-behavior:auto}
+}
+
+/* Compact desktop density: matches the approved Inbox reference at the
+   current Windows display scale without relying on browser zoom. */
+@media (min-width:761px){
+  .wm-app.wm-dark{grid-template-columns:56px 176px minmax(0,1fr)}
+  .wm-rail{gap:4px;padding:9px 4px}.wm-rail>button,.wm-rail-bottom>button{width:46px;min-height:38px;padding:4px 1px;border-radius:10px;font-size:7.5px}.wm-rail>button svg,.wm-rail-bottom>button svg{width:15px;height:15px}.wm-rail>.wm-logo-button{min-height:43px;margin-bottom:8px}.wm-logo-button img{width:30px;height:30px}
+  .wm-sidebar{padding:12px 9px}.wm-compose-button{height:35px;margin-bottom:13px;padding:0 16px 0 12px;border-radius:18px;gap:8px;font-size:10px}.wm-compose-button svg{width:14px;height:14px}.wm-sidebar nav{gap:1px}.wm-sidebar nav button{gap:9px;min-height:29px;padding:0 9px;border-radius:15px;font-size:9.5px}.wm-sidebar nav svg{width:14px;height:14px}.wm-sidebar nav b{min-width:16px;height:15px;padding:0 4px;border-radius:8px;font-size:8px}.wm-sidebar-bottom{padding:9px 9px 0;font-size:8px}.wm-sidebar-bottom small{font-size:8px}
+  .wm-toolbar{gap:9px;padding:13px 19px 10px}.wm-toolbar>button{width:30px;height:30px}.wm-collapse span{width:15px;height:15px}.wm-search{height:35px;padding:0 12px;border-radius:11px;gap:8px}.wm-search>svg{width:14px;height:14px}.wm-search input{font-size:10px}.wm-avatar{width:28px;height:28px;font-size:10px}
+  .wm-split{padding:0 21px 21px}.wm-message-list{border-radius:13px}.wm-list-heading{gap:8px;padding:15px 18px 8px}.wm-list-heading h1{font-size:17px}.wm-list-heading>div:first-child>span{font-size:9px}.wm-tabs{gap:3px}.wm-tabs button{height:27px;padding:0 12px;border-radius:14px;font-size:9px}.wm-bulk{top:65px;right:18px;gap:5px;font-size:9px}.wm-bulk label{min-height:29px;gap:7px}.wm-app input[type=checkbox]{flex-basis:12px;width:12px;height:12px;min-width:12px}
+  .wm-select-row{min-height:57px;padding-left:9px;gap:4px}.wm-select-row>input[type=checkbox]{margin:0 8px}.wm-star-button{width:29px;height:29px}.wm-star-button svg{width:14px;height:14px}.wm-draft-row{min-height:57px;padding:7px 13px 7px 3px;gap:9px}.wm-message-avatar{width:31px;height:31px;font-size:9px}.wm-draft-row strong{font-size:10.5px}.wm-subject{font-size:10px}.wm-draft-row small{font-size:9px}.wm-draft-row time{min-width:47px;font-size:9px}.wm-quick-actions button{width:29px;height:29px}.wm-quick-actions svg{width:14px;height:14px}
+  .wm-list-empty{padding:46px 14px}.wm-list-empty h2{font-size:13px}.wm-list-empty p{font-size:9px}.wm-list-notice{gap:8px;margin:13px 0 0;padding:10px 13px;border-radius:11px;font-size:9px}.wm-list-notice::before{width:14px;height:14px}
+  .wm-composer{right:19px;width:min(347px,calc(100vw - 22px));border-radius:11px 11px 0 0}.wm-composer h2{font-size:10px}.wm-composer form{padding:0 12px}.wm-composer textarea{font-size:10px}.wm-composer label,.wm-from{font-size:9px}.wm-composer footer{gap:7px}.wm-primary{min-height:30px;padding:0 16px;border-radius:15px;font-size:10px}
+}
+
+/* Readability pass: retain the compact layout while increasing only text. */
+@media (min-width:761px){
+  .wm-rail>button,.wm-rail-bottom>button{font-size:8.5px}
+  .wm-compose-button{font-size:12px}
+  .wm-sidebar nav button{font-size:11px}
+  .wm-sidebar nav b{font-size:8.5px}
+  .wm-sidebar-bottom,.wm-sidebar-bottom small{font-size:9.5px}
+  .wm-search input{font-size:12px}
+  .wm-list-heading h1{font-size:20px}
+  .wm-list-heading>div:first-child>span,.wm-tabs button,.wm-bulk{font-size:11px}
+  .wm-draft-row strong{font-size:12.5px}
+  .wm-subject{font-size:12px}
+  .wm-draft-row small,.wm-draft-row time{font-size:10.5px}
+  .wm-list-empty p,.wm-list-notice{font-size:10.5px}
+  .wm-composer h2,.wm-composer textarea{font-size:12px}
+  .wm-composer label,.wm-from,.wm-primary{font-size:11px}
+}
+
+/* Slightly roomier desktop mail density without returning to the oversized layout. */
+@media (min-width:761px){
+  .wm-app.wm-dark{grid-template-columns:62px 196px minmax(0,1fr)}
+  .wm-rail{padding:10px 5px}.wm-rail>button,.wm-rail-bottom>button{width:51px;min-height:42px;font-size:9px}.wm-rail>button svg,.wm-rail-bottom>button svg{width:17px;height:17px}.wm-rail>.wm-logo-button{min-height:48px}.wm-logo-button img{width:34px;height:34px}
+  .wm-sidebar{padding:14px 10px}.wm-compose-button{height:39px;margin-bottom:15px;font-size:12.5px}.wm-sidebar nav button{min-height:32px;font-size:11.5px}.wm-sidebar nav svg{width:15px;height:15px}.wm-sidebar-bottom{font-size:10px}.wm-sidebar-bottom small{font-size:10px}
+  .wm-toolbar{padding:15px 21px 12px}.wm-toolbar>button{width:34px;height:34px}.wm-search{height:39px;border-radius:12px}.wm-search input{font-size:12.5px}.wm-avatar{width:32px;height:32px;font-size:11px}
+  .wm-split{padding:0 24px 24px}.wm-list-heading{padding:17px 20px 10px}.wm-list-heading h1{font-size:21px}.wm-list-heading>div:first-child>span,.wm-tabs button,.wm-bulk{font-size:11.5px}.wm-tabs button{height:30px}.wm-bulk{top:72px;right:20px}.wm-select-row,.wm-draft-row{min-height:63px}.wm-message-avatar{width:35px;height:35px;font-size:10px}.wm-draft-row strong{font-size:13px}.wm-subject{font-size:12.5px}.wm-draft-row small,.wm-draft-row time{font-size:11px}.wm-quick-actions button{width:32px;height:32px}
+  .wm-list-notice{font-size:11px;padding:11px 14px}.wm-composer{width:min(380px,calc(100vw - 28px))}.wm-composer h2,.wm-composer textarea{font-size:12.5px}.wm-composer label,.wm-from,.wm-primary{font-size:11.5px}.wm-primary{min-height:34px}
+}
+
+/* Compose is deliberately roomier than the compact inbox controls. */
+@media (min-width:761px){
+  .wm-composer{right:28px;width:min(520px,calc(100vw - 48px));max-height:min(620px,calc(100dvh - 28px));border-radius:18px 18px 0 0}
+  .wm-composer>header{padding:10px 12px 10px 24px}
+  .wm-composer h2{font-size:15px}
+  .wm-composer>header .wm-text-button{width:42px;height:42px;font-size:20px}
+  .wm-composer form{padding:0 24px}
+  .wm-from{padding:12px 0;font-size:13px}
+  .wm-composer label{min-height:47px;padding:4px 0;font-size:13px}
+  .wm-composer label input:not([type=file]){height:36px;font-size:14px}
+  .wm-composer textarea{flex-basis:160px;min-height:160px;max-height:200px;padding:14px 0;font-size:14px;line-height:1.55}
+  .wm-compose-note{margin:12px 0;font-size:12px;line-height:1.5}
+  .wm-composer footer{gap:10px;padding:12px 0}
+  .wm-composer footer .wm-primary,.wm-composer footer .btn{min-height:40px;padding:0 18px;font-size:13px}
+}
+
+/* Navigation alignment: use one deliberate scale for the rail and folders. */
+@media (min-width:761px){
+  .wm-app.wm-dark{grid-template-columns:76px 250px minmax(0,1fr)}
+  .wm-rail{gap:8px;padding:14px 8px}
+  .wm-rail>button,.wm-rail-bottom>button{width:60px;min-height:52px;padding:6px 2px;border-radius:14px;font-size:10px;gap:4px}
+  .wm-rail>button svg,.wm-rail-bottom>button svg{width:20px;height:20px}
+  .wm-rail>.wm-logo-button{width:52px;min-height:52px;margin:0 0 12px;padding:4px;border-radius:14px;background:transparent}
+  .wm-logo-button img{display:block;width:42px;height:42px;object-fit:contain;mix-blend-mode:multiply}
+  .wm-sidebar{padding:18px 14px}
+  .wm-compose-button{height:48px;margin-bottom:20px;padding:0 22px 0 17px;border-radius:24px;gap:10px;font-size:14px}
+  .wm-compose-button svg{width:18px;height:18px}
+  .wm-sidebar nav{gap:3px}
+  .wm-sidebar nav button{gap:13px;min-height:40px;padding:0 13px;border-radius:20px;font-size:13.5px}
+  .wm-sidebar nav svg{width:18px;height:18px}
+  .wm-sidebar nav b{min-width:22px;height:21px;padding:0 6px;border-radius:11px;font-size:11px}
+  .wm-sidebar-bottom{padding:14px 13px 0;font-size:11px}
+  .wm-sidebar-bottom small{font-size:11px}
+}
+@media(hover:hover) and (pointer:fine){
+  .wm-sidebar nav button,.wm-compose-button,.wm-toolbar>button,.wm-quick-actions button,.wm-star-button{transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease,color .18s ease}
+  .wm-sidebar nav button:hover,.wm-toolbar>button:hover{transform:translateX(2px)}.wm-compose-button:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(22,101,52,.2)}
+  .wm-star-button:hover,.wm-quick-actions button:hover{transform:translateY(-1px);background:var(--hover)}
+}
+
+/* Always-visible return path to the HRMS launcher. The rail action remains as
+   a secondary shortcut, while this labelled control is discoverable in Inbox. */
+.wm-toolbar>.wm-home-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;width:auto;height:36px;padding:0 12px;border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--primary);font:600 11.5px/1 Inter,system-ui,sans-serif;white-space:nowrap}
+.wm-home-button svg{width:15px;height:15px}.wm-toolbar>.wm-home-button:hover{background:var(--hover);border-color:#A8C8B2;color:var(--primary)}
+@media(max-width:760px){.wm-toolbar>.wm-home-button{width:40px;height:40px;padding:0;border-radius:50%}.wm-home-button span{display:none}}
+
+/* Keep the product mark visible at the top of the rail instead of allowing it
+   to disappear when the narrow navigation area is scrolled. */
+.wm-rail{overflow:hidden}
+.wm-rail>.wm-logo-button,.wm-rail>.wm-logo-static{position:relative;z-index:2;flex:0 0 auto;width:56px;min-height:56px;margin:2px 0 12px;padding:5px;border:1px solid #E3EBE6;border-radius:17px;background:#fff;box-shadow:0 6px 16px rgba(16,35,26,.1)}
+.wm-rail>.wm-logo-button{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.wm-rail>.wm-logo-button:hover{transform:translateY(-1px) scale(1.03);border-color:#9FC6AA;background:#fff;box-shadow:0 9px 20px rgba(16,35,26,.14)}
+.wm-logo-button img,.wm-logo-static img{width:44px;height:44px;display:block;object-fit:contain;mix-blend-mode:normal}
+@media(max-width:760px){.wm-rail>.wm-logo-button,.wm-rail>.wm-logo-static{display:none}}
+

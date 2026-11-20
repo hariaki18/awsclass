@@ -1,0 +1,5 @@
+{
+  "name": "xpertsedge-hrms-verification",
+  "private": true,
+  "scripts": { "verify": "node verify.mjs" }
+}

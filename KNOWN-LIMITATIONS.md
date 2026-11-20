@@ -1,0 +1,19 @@
+# Current scope and known limitations
+
+Implemented: admin authentication/sessions, local Mail Admin, notifications, basic employee and department CRUD, user/account role management, own linked employee profile, health/logging and H2/Flyway migrations.
+
+- Recruitment remains a placeholder. Attendance, leave, payroll, compliance/statutory calculations, interviews/offers and advanced organization/company settings are not implemented.
+- Employee records and user accounts are separate; linking is explicit. No CSV import/export, pagination, approval workflows or full employee self-service beyond read-only linked profile.
+- Four roles are enforced server-side: ADMIN, HR_ADMIN, MAIL_ADMIN, EMPLOYEE. No configurable permissions, multi-company tenancy or SSO. HRMS admin MFA is not implemented; the separate local Webmail supports authenticator MFA and recovery codes.
+- Real internet mail provider/domain is not selected/connected. Local Mailpit SMTP and mailbox-only Webmail login are implemented for @xpertsedge.com local tests (LOCAL-MAIL.md). Inbox/Sent/drafts persist in MySQL. Reply/reply-all/forward, To/Cc, attachments (5 files/1 MB), persistent drafts, search/read state and trash/restore are implemented locally. No internet delivery, IMAP listener, custom folders or antivirus scanning. Local scheduled sending, personal calendar/contacts, Archive, preferences, storage usage and bulk/filter actions are implemented. Scheduled delivery requires the backend and Mailpit; overdue messages resume on startup. Storage displays message-body and attachment bytes, excluding database overhead. Quota fields are not enforced production quotas.
+- No email invitations or automated password recovery. Initial/reset user passwords must be shared securely by the administrator. AI was removed.
+- Data engine verified is H2 2.2.224. MySQL driver/profile and versioned schema migrations are added (see MYSQL-SETUP.md), and local MySQL startup, schema validation and proxied login/session are verified. Local mailbox/MySQL/SMTP integration is verified; full HR/Organization MySQL regression and H2 data transfer remain pending. MySQL is required at runtime; H2 is used for isolated tests only. PostgreSQL is not configured. Production backups/hosting require separate work. Existing pre-role users retain ADMIN access; review them before production.
+- Per-email login lockout is synchronized within one backend instance. Distributed/edge rate limiting is not implemented. Sessions expire without automatic refresh.
+- Record editing is last-write-wins; no client revision/optimistic concurrency conflict UI. Database constraints and local mail namespace locking protect uniqueness/referential integrity.
+- Notifications retain latest-100 display with all-unread count, using polling. They are dismissible notifications, not an immutable compliance audit trail.
+- Production domain/TLS, reverse proxy, secrets, database provisioning, centralized monitoring, backup restore and rollback are DevOps responsibilities. Demo password is local-development only; prod guards reject it.
+- Automated functional/security checks are not a penetration test, vulnerability certification or load test. No delivery claims are made for external email.
+
+See TEST-RESULTS.md, API.md, TESTING.md and DATABASE-MIGRATIONS.md for verified behavior and deployment boundaries.
+
+Google Gmail API/OAuth: the user has created a Google Cloud project, enabled Gmail API and created consent-screen configuration. The Gmail API + OAuth integration (connect/callback, encrypted refresh tokens, Gmail API send, history-based inbox sync) is implemented in source; see GMAIL-OAUTH.md. It is untested against real Gmail until the owner runs the live check, and the Google client secret must be supplied locally. Google Cloud setup alone does not enable internet delivery. The source package excludes existing MySQL records, SMTP captures and runtime secrets.

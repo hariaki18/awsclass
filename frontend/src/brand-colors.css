@@ -1,0 +1,111 @@
+/* Color-only overrides. Paste after the existing stylesheet. */
+:root {
+  --bg: #F4F8F6;
+  --card: #FFFFFF;
+  --ink: #1A2433;
+  --mut: #65717F;
+  --line: #DDE7E2;
+  --green: #1F8A4C;
+  --mint: #BCE8CE;
+  --tint: #EAF5EE;
+  --btn: #1D8449;
+  --btnink: #FFFFFF;
+  --heading: #1C3F75;
+  --accent: #E8EC1A;
+  --hero: #1C3F75;
+  --hero-glow: #19573F;
+  --hero-text: #FFFFFF;
+  --hero-muted: #DCE8F2;
+  --success-bg: #EAF5EE;
+  --success-ink: #17683A;
+  --neutral-bg: #EAF0F7;
+  --neutral-ink: #1C3F75;
+  --danger: #B3261E;
+  --badge: #B3261E;
+  --shadow: rgba(28, 63, 117, 0.06);
+  --overlay: rgba(14, 23, 38, 0.50);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1726;
+    --card: #16233A;
+    --ink: #EAF0F7;
+    --mut: #A8B6C8;
+    --line: #243552;
+    --green: #65D48C;
+    --mint: #BCE8CE;
+    --tint: #193B30;
+    --btn: #65D48C;
+    --btnink: #0E1726;
+    --heading: #AEC9F4;
+    --success-bg: #193B30;
+    --success-ink: #9DE5B7;
+    --neutral-bg: #20334F;
+    --neutral-ink: #C1D6F5;
+    --danger: #FFAAA3;
+    --shadow: rgba(0, 0, 0, 0.18);
+    --overlay: rgba(4, 10, 20, 0.70);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0E1726;
+  --card: #16233A;
+  --ink: #EAF0F7;
+  --mut: #A8B6C8;
+  --line: #243552;
+  --green: #65D48C;
+  --mint: #BCE8CE;
+  --tint: #193B30;
+  --btn: #65D48C;
+  --btnink: #0E1726;
+  --heading: #AEC9F4;
+  --success-bg: #193B30;
+  --success-ink: #9DE5B7;
+  --neutral-bg: #20334F;
+  --neutral-ink: #C1D6F5;
+  --danger: #FFAAA3;
+  --shadow: rgba(0, 0, 0, 0.18);
+  --overlay: rgba(4, 10, 20, 0.70);
+  color-scheme: dark;
+}
+
+h1, h2, h3, h4, .brand b, .app b { color: var(--heading); }
+.side, table, th { background: var(--card); }
+.btn.green, .nav.on, .m.u {
+  background: var(--btn);
+  color: var(--btnink);
+  border-color: var(--btn);
+}
+.nav.on { box-shadow: inset 4px 0 0 var(--accent); }
+.note { background: var(--neutral-bg); color: var(--neutral-ink); }
+.hero {
+  background-color: var(--hero);
+  background-image: radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px), radial-gradient(900px 400px at 85% 0,var(--hero-glow) 0,transparent 60%);
+  color: var(--hero-text);
+}
+.hero h1 { color: var(--hero-text); }
+.date, .clock span, .apps h3 { color: var(--hero-muted); }
+.ai { background: #FFFFFF; color: #1C3F75; border-color: #BCE8CE; }
+.bell i { background: var(--badge); color: #FFFFFF; }
+.av { background: var(--tint); color: var(--heading); }
+.st { background: var(--success-bg); color: var(--success-ink); }
+.st.s { background: var(--neutral-bg); color: var(--neutral-ink); }
+.err, .btn.danger { color: var(--danger); }
+.app { box-shadow: 0 8px 24px var(--shadow); }
+.dd { box-shadow: 0 12px 32px var(--shadow); }
+.ov { background: var(--overlay); }
+.lg-side {
+  background: radial-gradient(700px 420px at 100% 100%,rgba(31,138,76,.18),transparent 70%), linear-gradient(155deg,#1C3F75 0%,#193E69 42%,#19573F 100%);
+  color: var(--hero-text);
+}
+.lg-copy h2 { color: var(--hero-text); }
+.lg-copy p, .lg-side small { color: var(--hero-muted); }
+.lg-side::before { background: linear-gradient(90deg,transparent 5%,rgba(232,236,26,.15) 35%,var(--accent) 80%,var(--accent)); }
+.lg-copy li::before { background: var(--accent); }
+.lg-form input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(31,138,76,.18); }
+.lg-form .btn.green { background: var(--btn); color: var(--btnink); }
+.lg-form .btn.green:hover { filter: none; }

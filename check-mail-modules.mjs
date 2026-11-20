@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';
+import {randomUUID,createHmac} from 'node:crypto';
+const base=process.env.LOCAL_MAIL_TEST_URL||'http://127.0.0.1:8080',origin='http://127.0.0.1:5173';
+let checks=0,adminCookie='',created=[];
+const prefix='qm'+randomUUID().replaceAll('-','').slice(0,10),password='LocalOnly@'+randomUUID();
+async function req(path,cookie='',body,method='GET',status=200){const r=await fetch(base+'/api'+path,{method,headers:{Origin:origin,'Content-Type':'application/json',...(cookie?{Cookie:cookie}:{})},body:body?JSON.stringify(body):undefined});const data=await r.json().catch(()=>null);assert.equal(r.status,status,path+': '+JSON.stringify(data));checks++;return {data,cookie:r.headers.get('set-cookie')?.split(';')[0]||cookie,header:r.headers.get('set-cookie')};}
+function totp(secret){let value=0,bits=0,bytes=[];for(const c of secret){value=(value<<5)|'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'.indexOf(c);bits+=5;if(bits>=8){bytes.push((value>>>(bits-8))&255);bits-=8;}}const counter=Buffer.alloc(8);counter.writeBigUInt64BE(BigInt(Math.floor(Date.now()/30000)));const hash=createHmac('sha1',Buffer.from(bytes)).update(counter).digest(),off=hash[19]&15;return String((hash.readUInt32BE(off)&0x7fffffff)%1000000).padStart(6,'0');}
+try{
+ adminCookie=(await req('/auth/login','',{email:process.env.LOCAL_MAIL_ADMIN_EMAIL||'admin@xpertsedge.com',password:process.env.LOCAL_MAIL_ADMIN_PASSWORD||'Admin@123'},'POST')).cookie;
+ const accounts=[];for(const suffix of ['a','b']){const b=await req('/mail/mailboxes',adminCookie,{address:prefix+suffix,displayName:'Module QA',password,quotaGb:1},'POST');created.push(b.data.id);const email=prefix+suffix+'@xpertsedge.com';accounts.push({email,cookie:(await req('/webmail/login','',{email,password},'POST')).cookie});}const [a,b]=accounts;
+ const contact={name:'QA Contact',email:b.email,phone:'',company:'Local QA',notes:'Private contact'};
+ let id=(await req('/webmail/contacts',a.cookie,contact,'POST')).data.id;assert.equal((await req('/webmail/contacts',a.cookie)).data.length,1);assert.equal((await req('/webmail/contacts',b.cookie)).data.length,0);await req('/webmail/contacts/'+id,b.cookie,contact,'PUT',404);contact.name='Updated contact';await req('/webmail/contacts/'+id,a.cookie,contact,'PUT');await req('/webmail/contacts/'+id,a.cookie,undefined,'DELETE',204);
+ const event={title:'QA meeting',startsAt:'2027-01-01T09:00:00Z',endsAt:'2027-01-01T10:00:00Z',location:'Local',notes:'Private event'};id=(await req('/webmail/calendar',a.cookie,event,'POST')).data.id;assert.equal((await req('/webmail/calendar',b.cookie)).data.length,0);await req('/webmail/calendar/'+id,b.cookie,undefined,'DELETE',404);await req('/webmail/calendar/'+id,a.cookie,event,'PUT');await req('/webmail/calendar/'+id,a.cookie,undefined,'DELETE',204);
+ await req('/webmail/preferences',a.cookie,{signature:'Regards',theme:'dark',density:'comfortable',timeZone:'Asia/Kolkata',shortcuts:false},'PUT');assert.equal((await req('/webmail/preferences',a.cookie)).data.signature,'Regards');assert.equal((await req('/webmail/preferences',b.cookie)).data.theme,'light');
+ const draft={to:b.email,subject:prefix+' scheduled mail',body:'Scheduled round trip'};id=(await req('/webmail/drafts',a.cookie,draft,'POST')).data.id;
+ await req('/webmail/schedule',a.cookie,{id,scheduledAt:new Date(Date.now()+60000).toISOString()},'POST');await req('/webmail/schedule/'+id+'/cancel',b.cookie,{},'POST',404);await req('/webmail/schedule/'+id+'/cancel',a.cookie,{},'POST');
+ await req('/webmail/schedule',a.cookie,{id,scheduledAt:new Date(Date.now()+7000).toISOString()},'POST');
+ let sent;for(let i=0;i<20;i++){sent=(await req('/webmail/messages?folder=Sent',a.cookie)).data.messages.find(m=>m.id===id);if(sent)break;await new Promise(r=>setTimeout(r,1000));}assert.ok(sent,'Scheduled message sent by backend worker');assert.equal(sent.deliveryStatus,'SMTP_ACCEPTED');
+ const received=(await req('/webmail/messages?folder=Inbox',b.cookie)).data.messages.find(m=>m.subject===draft.subject);assert.ok(received,'Local SMTP scheduled mail received');
+ await req('/webmail/bulk',b.cookie,{ids:[received.id,id],action:'trash'},'POST',404);assert.equal((await req('/webmail/messages?folder=Inbox',b.cookie)).data.messages.length,1);
+ await req('/webmail/bulk',b.cookie,{ids:[received.id],action:'read'},'POST');assert.equal((await req('/webmail/messages?read=read',b.cookie)).data.total,1);assert.equal((await req('/webmail/messages?read=unread',b.cookie)).data.total,0);
+ await req('/webmail/bulk',b.cookie,{ids:[received.id],action:'archive'},'POST');assert.equal((await req('/webmail/messages?folder=Archive',b.cookie)).data.total,1);await req('/webmail/bulk',b.cookie,{ids:[received.id],action:'trash'},'POST');await req('/webmail/bulk',b.cookie,{ids:[received.id],action:'restore'},'POST');assert.equal((await req('/webmail/messages?folder=Archive',b.cookie)).data.total,1);
+ assert.ok((await req('/webmail/storage',a.cookie)).data.bodyBytes>=draft.body.length);
+ const secret=(await req('/webmail/security/setup',a.cookie,{password},'POST')).data.secret;
+ const recovery=(await req('/webmail/security/confirm',a.cookie,{password,code:totp(secret)},'POST')).data.recoveryCodes;assert.equal(recovery.length,8);await req('/webmail/me',a.cookie,undefined,'GET',401);await req('/webmail/login','',{email:a.email,password},'POST',401);
+ const remembered=await req('/webmail/login','',{email:a.email,password,code:recovery[0],rememberMe:true},'POST');assert.match(remembered.header,/Max-Age=2592000/);await req('/webmail/login','',{email:a.email,password,code:recovery[0]},'POST',401);
+ await req('/webmail/security/disable',remembered.cookie,{password,code:recovery[1]},'POST');await req('/webmail/me',remembered.cookie,undefined,'GET',401);const normal=await req('/webmail/login','',{email:a.email,password},'POST');assert.doesNotMatch(normal.header,/Max-Age=/);
+ console.log('PASS: '+checks+' live MySQL contacts/calendar/settings/storage, scheduled SMTP, bulk/filter/isolation and MFA/recovery/session checks.');
+}finally{
+ for(const id of created)await req('/mail/mailboxes/'+id,adminCookie,undefined,'DELETE',204);
+ if(adminCookie){for(const n of (await req('/notifications',adminCookie)).data)if(n.body?.includes(prefix))await req('/notifications/'+n.id,adminCookie,undefined,'DELETE',204);}
+ const capture=await fetch('http://127.0.0.1:8025/api/v1/search?query='+encodeURIComponent(prefix)).then(r=>r.json());const ids=(capture.messages||[]).filter(m=>m.Subject?.includes(prefix)).map(m=>m.ID);if(ids.length)await fetch('http://127.0.0.1:8025/api/v1/messages',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({IDs:ids})});
+}

@@ -1,0 +1,78 @@
+{
+  "updatedAt": "2026-11-06T09:34:40.9083782Z",
+  "status": "passed",
+  "passed": true,
+  "results": [
+    {
+      "name": "frontend-tests",
+      "passed": true,
+      "durationMs": 1060,
+      "exitCode": 0
+    },
+    {
+      "name": "frontend-build",
+      "passed": true,
+      "durationMs": 2338,
+      "exitCode": 0
+    },
+    {
+      "name": "backend-tests-build",
+      "passed": true,
+      "durationMs": 55283,
+      "exitCode": 0
+    },
+    {
+      "name": "mail-regression",
+      "passed": true,
+      "durationMs": 25989,
+      "exitCode": 0
+    },
+    {
+      "name": "basic-modules-regression",
+      "passed": true,
+      "durationMs": 22268,
+      "exitCode": 0
+    },
+    {
+      "name": "auth-regression",
+      "passed": true,
+      "durationMs": 20325,
+      "exitCode": 0
+    },
+    {
+      "name": "password-rotation",
+      "passed": true,
+      "durationMs": 21995,
+      "exitCode": 0
+    },
+    {
+      "name": "production-guards",
+      "passed": true,
+      "durationMs": 67267,
+      "exitCode": 0
+    }
+  ],
+  "supplemental": [
+    {
+      "name": "final-backend-tests-build",
+      "passed": true,
+      "testsPassed": 28,
+      "skipped": 2
+    },
+    {
+      "name": "final-frontend-tests-build",
+      "passed": true,
+      "testsPassed": 15
+    },
+    {
+      "name": "final-live-mail-modules",
+      "passed": true,
+      "checks": 53
+    },
+    {
+      "name": "final-live-mail-features",
+      "passed": true,
+      "checks": 113
+    }
+  ]
+}

@@ -1,0 +1,453 @@
+/* ==========================================================================
+   XpertsEdge — unified theme (HRMS + Mail Admin + Auth screens)
+   Loaded AFTER styles.css. Frontend only; no backend impact.
+   Edit colours in :root below.
+   ========================================================================== */
+:root{
+  --bg:#F3F6F4;--card:#fff;--ink:#10231A;--mut:#566A5F;--line:#E3EBE6;
+  --green:#166534;--btn:#166534;--btnink:#fff;--tint:#DDF0E4;--heading:#10231A;
+  --hover:#EAF2ED;--danger:#B91C1C;--soft-ink:#14532D;
+  --shadow:rgba(16,35,26,.08);--overlay:rgba(10,24,17,.5);
+  --success-bg:#DDF0E4;--success-ink:#14532D;--neutral-bg:#EAF2ED;--neutral-ink:#14532D;
+  --radius:20px;
+}
+:root[data-theme="dark"]{
+  --bg:#0E1512;--card:#16201B;--ink:#E6F0EA;--mut:#9DB0A5;--line:#2A3A32;
+  --green:#4ADE80;--btn:#4ADE80;--btnink:#0E1512;--tint:#1F3A2B;--heading:#E6F0EA;
+  --hover:#1D2B24;--danger:#FCA5A5;--soft-ink:#BFEBD0;--shadow:rgba(0,0,0,.35);
+  --success-bg:#1F3A2B;--success-ink:#BFEBD0;--neutral-bg:#1D2B24;--neutral-ink:#BFEBD0;
+}
+body{background:var(--bg);color:var(--ink)}
+h1,h2,h3,h4,.brand b,.app b{color:var(--heading)}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+
+/* ---------- buttons, inputs ---------- */
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:9px 18px;font-weight:600;min-height:40px}
+.btn:hover{background:var(--hover);border-color:var(--line)}
+.btn.dark,.btn.green{background:var(--btn);color:var(--btnink);border-color:var(--btn)}
+.btn.dark:hover,.btn.green:hover{filter:brightness(1.08);background:var(--btn)}
+.btn.dark{box-shadow:0 4px 12px rgba(22,101,52,.22)}
+.btn.danger{color:var(--danger)}
+.btn.dark.danger{background:var(--danger);color:#fff;border-color:var(--danger);box-shadow:none}
+input,select{height:46px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font-size:15px}
+input:focus,select:focus{outline:0;border-color:var(--green);box-shadow:0 0 0 3px rgba(22,101,52,.18)}
+label{font-weight:600;font-size:14px;margin:16px 0 7px}
+.note{background:var(--tint);color:var(--soft-ink);border-radius:14px;padding:14px 16px}
+.err{color:var(--danger);font-weight:500}
+.ic{border-radius:50%;width:40px;height:40px;display:inline-grid;place-items:center;color:var(--mut);padding:0}
+.ic:hover{background:var(--hover);color:var(--green)}
+.logo{border-radius:12px}
+
+/* ---------- home / launcher ---------- */
+.wrap{max-width:1180px;padding:28px 24px}
+.hero{background:var(--card);background-image:none;color:var(--ink);border:1px solid var(--line);border-radius:var(--radius);padding:28px 32px 32px;box-shadow:0 1px 3px var(--shadow);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-90px;top:-90px;width:300px;height:300px;border-radius:50%;background:var(--tint);opacity:.8}
+.hero>*{position:relative}
+.hero h1,.hero .greet{color:var(--ink)}
+.pill{background:var(--card);border:1px solid var(--line);color:var(--ink);box-shadow:none;border-radius:999px;padding:9px 18px}
+.pill:hover{background:var(--hover)}
+.date{margin-top:32px;color:var(--mut);letter-spacing:.08em}
+.greet{font-size:clamp(30px,5vw,50px);line-height:1.1;letter-spacing:-.025em;font-weight:700;margin:10px 0 0;color:var(--ink)}
+.greet b{color:var(--green);font-weight:700}
+.clock{right:32px;bottom:30px}
+.clock div{font-size:clamp(34px,5vw,58px);color:var(--ink)}
+.clock small{color:var(--green)}.clock span{color:var(--mut)}
+.apps{margin:28px 0 0}
+.apps h3{color:var(--mut);margin-bottom:14px}
+.apps h3 span{background:var(--tint)!important;color:var(--soft-ink)!important}
+.grid{gap:18px}
+.app{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 1px 3px var(--shadow)}
+.app:hover{border-color:var(--green)}
+.app b{font-size:18px}
+.tile{border-radius:16px}
+.app .go{background:var(--tint);color:var(--green)}
+.bell i{background:var(--danger);color:#fff}
+
+/* ---------- shell: sidebar + topbar ---------- */
+.side{background:var(--card);border-right:1px solid var(--line);width:264px;padding:20px 14px}
+.brand{border-bottom:0;padding:0 8px 16px;margin-bottom:8px}
+.sec{color:var(--mut);letter-spacing:.08em;font-weight:600;margin:14px 0 8px}
+.nav{border-radius:22px;padding:12px 16px;font-weight:600;color:var(--ink)}
+.nav:hover{background:var(--hover)}
+.nav.on{background:var(--tint);color:var(--soft-ink);box-shadow:none}
+.top{background:var(--card);border-bottom:1px solid var(--line);padding:14px 32px}
+.top .r{gap:10px}
+.av{background:var(--btn);color:var(--btnink);font-weight:700;width:42px;height:42px}
+.page{padding:32px;max-width:1160px}
+.page h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
+.page>p{color:var(--mut)}
+.tabs{border:0;gap:6px;margin-bottom:22px}
+.tab{border:0;border-radius:999px;padding:10px 18px;color:var(--mut);margin:0}
+.tab:hover{background:var(--hover)}
+.tab.on{background:var(--tint);color:var(--soft-ink)}
+
+/* ---------- cards, tables, badges ---------- */
+.box{border-radius:var(--radius);border:1px solid var(--line);box-shadow:0 1px 3px var(--shadow);background:var(--card)}
+.bh{font-weight:700;font-size:17px;padding:20px 24px}
+.stat{border-top:1px solid var(--line)}
+th{background:var(--bg);color:var(--mut);font-size:12px;letter-spacing:.08em;padding:12px 24px;border-top:1px solid var(--line)}
+td{padding:16px 24px;border-top:1px solid var(--line)}
+tbody tr:hover td{background:var(--hover)}
+td small{color:var(--mut)}
+.st{background:var(--success-bg);color:var(--success-ink);border-radius:999px;padding:5px 12px}
+.st.s{background:var(--neutral-bg);color:var(--neutral-ink)}
+.acts .btn{min-height:36px;padding:6px 14px}
+.empty{border:1px dashed var(--line);border-radius:16px;background:var(--bg)}
+.empty .c{background:var(--tint);color:var(--green)}
+.empty h4{color:var(--ink)}
+.bar i{background:var(--green)}
+
+/* ---------- dialogs, dropdowns, toast ---------- */
+.ov{background:var(--overlay)}
+.md{border-radius:var(--radius);padding:28px;box-shadow:0 24px 64px rgba(0,0,0,.28)}
+.md h3{font-size:21px}
+.dd{border-radius:16px;box-shadow:0 12px 32px rgba(0,0,0,.18)}
+.toast{background:#10231A;color:#fff;border-radius:12px;padding:12px 20px;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.center{background:var(--bg)}
+
+/* ==========================================================================
+   AUTH SCREENS (HRMS login + Webmail login) — split layout
+   ========================================================================== */
+.xe-auth{min-height:100vh;display:flex;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif}
+.xe-auth *{box-sizing:border-box}
+.xe-brand{position:relative;overflow:hidden;flex:1 1 48%;max-width:700px;color:#fff;padding:56px 64px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;
+  background:radial-gradient(circle at 100% 0,#14532D 0 260px,transparent 261px),radial-gradient(circle at 0 100%,#14532D 0 210px,transparent 211px),#0F3D24}
+.xe-brand::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.10) 1.2px,transparent 1.2px);background-size:26px 26px;pointer-events:none}
+.xe-brand>*{position:relative}
+.xe-brand-top{display:flex;align-items:center;gap:14px;font-weight:700;font-size:21px;letter-spacing:-.01em}
+.xe-tile{width:60px;height:60px;border-radius:16px;background:#fff;display:grid;place-items:center}
+.xe-tile img{width:40px;height:auto}
+.xe-brand-mid{display:flex;flex-direction:column;gap:34px}
+.xe-brand h2{margin:0 0 14px;color:#fff;font-size:clamp(32px,3.4vw,44px);line-height:1.1;font-weight:700;letter-spacing:-.025em}
+.xe-brand p{margin:0;font-size:17px;line-height:1.6;color:#CFE9D8;max-width:440px}
+.xe-brand small{color:#CFE9D8;font-size:13px}
+.xe-chips{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:10px}
+.xe-chips li{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:500}
+/* layered app preview */
+.xe-pv{position:relative;height:370px;max-width:520px}
+.xe-pv-apps{height:auto}
+.xe-pv-inbox{background:#fff;color:#10231A;border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden}
+.xe-pv:not(.xe-pv-apps) .xe-pv-inbox{position:absolute;left:0;top:0;width:370px}
+.xe-pv-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
+.xe-pv-head b{font-size:16px;color:#10231A}
+.xe-pv-head span{background:#166534;color:#fff;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600}
+.xe-pv-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-top:1px solid #E3EBE6}
+.xe-pv-row.u{box-shadow:inset 4px 0 0 #166534}
+.xe-pv-row i{width:38px;height:38px;border-radius:50%;background:#1E3A6E;color:#fff;display:grid;place-items:center;font:600 12px Inter,sans-serif;flex:none}
+.xe-pv-row i.sq{border-radius:12px;background:#DDF0E4;color:#166534;font-size:15px}
+.xe-pv-row span{flex:1;min-width:0}
+.xe-pv-row b{display:block;font-size:14px;color:#10231A;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.xe-pv-row em{display:block;font-style:normal;font-size:13px;color:#166534;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.xe-pv-row small{color:#566A5F;font-size:12px}
+.xe-pv-compose{position:absolute;right:0;top:128px;width:290px;background:#fff;color:#10231A;border-radius:16px;box-shadow:0 28px 70px rgba(0,0,0,.45);overflow:hidden}
+.xe-pv-ch{background:#EAF2ED;color:#14532D;padding:10px 16px;font-weight:600;font-size:13.5px}
+.xe-pv-line{padding:10px 16px;border-bottom:1px solid #E3EBE6;font-size:13px;display:flex;gap:8px;align-items:center;color:#566A5F}
+.xe-pv-line span{background:#DDF0E4;color:#14532D;border-radius:999px;padding:3px 10px;font-weight:500}
+.xe-pv-bars{padding:14px 16px;display:grid;gap:8px;height:70px}
+.xe-pv-bars u{display:block;height:7px;border-radius:4px;background:#E3EBE6}
+.xe-pv-bars u:nth-child(1){width:90%}.xe-pv-bars u:nth-child(2){width:70%}.xe-pv-bars u:nth-child(3){width:40%}
+.xe-pv-send{padding:4px 16px 16px;display:flex;align-items:center;gap:10px}
+.xe-pv-send span{background:#166534;color:#fff;border-radius:999px;padding:8px 20px;font-size:13px;font-weight:600}
+.xe-pv-send small{color:#566A5F;font-size:12px}
+.xe-pv-toast{position:absolute;left:18px;bottom:0;display:flex;align-items:center;gap:10px;background:#10231A;color:#fff;border-radius:12px;padding:11px 16px;font-size:13.5px;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.xe-pv-toast i{width:22px;height:22px;border-radius:50%;background:#22C55E;color:#10231A;display:grid;place-items:center}
+
+/* Mail sign-in inbox illustration — this is a visual preview, not a second
+   interactive inbox. Its green unread rails mirror the actual Webmail UI. */
+.xe-auth--mail .xe-pv-inbox{border:1px solid rgba(16,35,26,.08)}
+.xe-auth--mail .xe-pv-head{min-height:58px;border-bottom:1px solid #E3EBE6}
+.xe-auth--mail .xe-pv-row{min-height:69px;background:#fff;transition:background-color .18s ease}
+.xe-auth--mail .xe-pv-row.u{background:#FCFFFD;box-shadow:inset 5px 0 0 #14733A}
+.xe-auth--mail .xe-pv-row b{font-weight:700}.xe-auth--mail .xe-pv-row em{margin-top:2px}
+.xe-auth--mail .xe-pv-compose{border:1px solid rgba(16,35,26,.10)}
+.xe-auth--mail .xe-pv-ch{border-bottom:1px solid #D6E7DA}
+
+.xe-auth-main{flex:1 1 52%;display:grid;place-items:center;padding:32px 20px}
+.xe-card{width:min(440px,100%);background:#fff;border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:0 12px 40px rgba(15,60,35,.10);color:#10231A}
+.xe-mlogo{display:none;width:64px;height:auto;margin:0 auto 14px}
+.xe-card h1{margin:0;text-align:center;font-size:26px;font-weight:700;letter-spacing:-.02em;color:#10231A}
+.xe-sub{margin:4px 0 22px;text-align:center;color:#566A5F;font-size:15px}
+.xe-form{display:flex;flex-direction:column}
+.xe-form label{font-size:14px;font-weight:600;margin:16px 0 8px;color:#10231A}
+.xe-form>label:first-child{margin-top:4px}
+.xe-input{width:100%;height:48px;padding:0 14px;border:1px solid #CFDCD4;border-radius:12px;background:#fff;color:#10231A;font-size:15px}
+.xe-input:focus{outline:0;border-color:#166534;box-shadow:0 0 0 3px rgba(22,101,52,.18)}
+.xe-input:-webkit-autofill{-webkit-box-shadow:0 0 0 100px #fff inset;-webkit-text-fill-color:#10231A}
+.xe-row{display:flex;align-items:center;justify-content:space-between;margin-top:16px}
+.xe-row label{margin:0 0 8px}
+.xe-link{border:0;background:none;padding:6px 2px;color:#166534;font-weight:600;font-size:13.5px}
+.xe-link:hover{text-decoration:underline}
+.xe-link.xe-left{align-self:flex-start;margin-top:10px;font-weight:500}
+.xe-pw{position:relative}
+.xe-pw .xe-input{padding-right:52px}
+.xe-eye{position:absolute;right:4px;top:2px;width:44px;height:44px;border:0;background:none;border-radius:10px;color:#566A5F;display:grid;place-items:center}
+.xe-eye:hover{background:#EAF2ED;color:#166534}
+.xe-caps{margin-top:6px;font-size:13px;color:#92400E;font-weight:500}
+.xe-help{margin-top:10px;background:#E9F4EC;color:#14532D;border-radius:12px;padding:12px 14px;font-size:13.5px}
+.xe-alert{margin:0 0 6px;background:#FDE8E8;color:#991B1B;border-radius:12px;padding:12px 14px;font-size:14px;font-weight:500}
+.xe-note{margin:0 0 14px;background:#E9F4EC;color:#14532D;border-radius:12px;padding:12px 14px;font-size:14px}
+.xe-check{display:flex!important;align-items:flex-start;gap:10px;margin:14px 0 0!important;font-weight:400!important;line-height:1.4;cursor:pointer}
+.xe-check input{width:20px;height:20px;min-width:20px;padding:0;margin:0;accent-color:#166534}
+.xe-check small{display:block;margin-top:2px;font-size:12.5px;color:#566A5F}
+.xe-submit{margin-top:22px;height:50px;border:0;border-radius:12px;background:#166534;color:#fff;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 6px 16px rgba(22,101,52,.25)}
+.xe-submit:hover:not(:disabled){filter:brightness(1.08)}
+.xe-submit:disabled{opacity:.8;cursor:progress}
+.xe-spin{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:xe-rot .7s linear infinite}
+@keyframes xe-rot{to{transform:rotate(360deg)}}
+.xe-foot{margin:24px 0 0;text-align:center;font-size:13.5px;line-height:1.6;color:#4A5D52}
+.xe-outline{display:flex;align-items:center;justify-content:center;gap:6px;height:42px;margin:18px auto 0;width:max-content;padding:0 20px;border:1px solid #CFDCD4;border-radius:999px;background:none;color:#166534;font-weight:600;font-size:14px;text-decoration:none}
+.xe-outline:hover{background:#EAF2ED}
+.xe-card .xe-form+.xe-outline{margin-top:22px}
+
+/* HRMS administrator sign-in: retain the original split-screen identity page.
+   This is deliberately independent from the compact application density rules. */
+.xe-auth--hrms{background:#F7FAF8}
+.xe-auth--hrms .xe-brand{
+  max-width:none;flex-basis:50%;padding:52px 64px;
+  background:radial-gradient(circle at 104% -8%,rgba(20,128,82,.55) 0 31%,transparent 31.2%),linear-gradient(137deg,#173F73 0%,#175D74 56%,#188C58 100%);
+}
+.xe-auth--hrms .xe-brand::before{background-image:radial-gradient(rgba(255,255,255,.16) 1.15px,transparent 1.2px);background-size:28px 28px;opacity:.75}
+.xe-auth--hrms .xe-brand::after{
+  content:"";position:absolute;z-index:0;inset:0;pointer-events:none;opacity:.95;
+  background:linear-gradient(149deg,transparent 0 74%,rgba(224,242,0,.94) 74.15% 74.8%,transparent 74.95%),
+             linear-gradient(149deg,transparent 0 80%,rgba(237,255,245,.72) 80.15% 80.45%,transparent 80.7%);
+}
+.xe-auth--hrms .xe-brand-top{font-size:21px;gap:16px}.xe-auth--hrms .xe-brand-mid{gap:36px;max-width:590px}
+.xe-auth--hrms .xe-brand h2{font-size:clamp(36px,3.7vw,52px);line-height:1.07;max-width:560px}.xe-auth--hrms .xe-brand p{font-size:17px;max-width:535px;line-height:1.55}
+.xe-auth--hrms .xe-chips{display:grid;gap:17px}.xe-auth--hrms .xe-chips li{padding:0;border:0;background:none;border-radius:0;font-size:16px}
+.xe-auth--hrms .xe-chips svg{color:#E4F400}.xe-auth--hrms .xe-brand small{font-size:13px}
+.xe-auth--hrms .xe-auth-main{align-items:center;background:linear-gradient(135deg,#F9FCFA 0%,#F1F7F3 100%);padding:48px clamp(38px,8vw,118px)}
+.xe-auth--hrms .xe-card{position:relative;width:min(500px,100%);padding:46px;border:1px solid #E0EBE4;border-radius:24px;box-shadow:0 20px 48px rgba(16,54,34,.12);background:rgba(255,255,255,.96);overflow:hidden}
+.xe-auth--hrms .xe-card::before{content:"";display:block;width:92px;height:8px;margin:0 0 25px;border-radius:999px;background:linear-gradient(90deg,#B9E900,#16924D)}
+.xe-auth--hrms .xe-hrms-logo{display:none;width:98px;height:88px;object-fit:contain;margin:0 0 25px}
+.xe-auth--hrms .xe-card h1{text-align:left;font-size:34px}.xe-auth--hrms .xe-sub{text-align:left;margin:7px 0 25px;font-size:16px}
+.xe-auth--hrms .xe-form label{font-size:16px;margin:18px 0 9px}.xe-auth--hrms .xe-input{height:54px;border-radius:12px;font-size:16px}
+.xe-auth--hrms .xe-row{margin-top:18px}.xe-auth--hrms .xe-link{font-size:15px}.xe-auth--hrms .xe-eye{top:4px;height:46px}
+.xe-auth--hrms .xe-submit{height:53px;margin-top:25px;border-radius:12px;font-size:16px;background:linear-gradient(100deg,#224F88,#16924D);box-shadow:none}
+.xe-auth--hrms .xe-outline{
+  display:flex;margin:18px 0 0;width:100%;height:44px;border-radius:12px;
+  border-color:#B9CABE;background:#fff;color:#166534;font-size:14px
+}
+
+
+/* Calm, accessible motion for the administrator sign-in page. */
+@keyframes xe-auth-enter{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes xe-brand-enter{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:translateX(0)}}
+@keyframes xe-logo-enter{0%{opacity:0;transform:scale(.86) rotate(-4deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+.xe-auth--hrms .xe-brand-top,.xe-auth--hrms .xe-brand-mid,.xe-auth--hrms .xe-brand>small{animation:xe-brand-enter .56s cubic-bezier(.2,.8,.2,1) both}
+.xe-auth--hrms .xe-brand-mid{animation-delay:.09s}.xe-auth--hrms .xe-brand>small{animation-delay:.17s}
+.xe-auth--hrms .xe-card{animation:xe-auth-enter .48s cubic-bezier(.2,.8,.2,1) .08s both}
+.xe-auth--hrms .xe-hrms-logo{animation:xe-logo-enter .48s cubic-bezier(.2,.8,.2,1) .14s both}
+.xe-auth--hrms .xe-input{transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease,background-color .18s ease}
+.xe-auth--hrms .xe-input:hover{border-color:#9CB9A9}.xe-auth--hrms .xe-input:focus{transform:translateY(-1px);box-shadow:0 0 0 4px rgba(22,101,52,.14)}
+.xe-auth--hrms .xe-eye,.xe-auth--hrms .xe-link{transition:color .18s ease,background-color .18s ease,transform .18s ease}
+.xe-auth--hrms .xe-eye:hover{transform:scale(1.06)}.xe-auth--hrms .xe-link:hover{color:#0D4D27;transform:translateX(-1px)}
+.xe-auth--hrms .xe-submit{transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
+.xe-auth--hrms .xe-submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 22px rgba(18,109,64,.25)}
+.xe-auth--hrms .xe-submit:active:not(:disabled){transform:translateY(0);box-shadow:0 3px 9px rgba(18,109,64,.2)}
+.xe-auth--hrms .xe-outline{transition:transform .18s ease,background-color .18s ease,border-color .18s ease,box-shadow .18s ease}
+.xe-auth--hrms .xe-outline:hover{transform:translateY(-1px);background:#EAF5ED;border-color:#78AA89;box-shadow:0 6px 14px rgba(16,70,38,.1)}
+.xe-auth--hrms .xe-chips li{transition:transform .18s ease,color .18s ease}.xe-auth--hrms .xe-chips li:hover{transform:translateX(4px);color:#fff}
+
+/* Keep the administrator sign-in comfortably within a desktop viewport. */
+@media(min-width:901px){
+  html:has(.xe-auth--hrms),body:has(.xe-auth--hrms),#root:has(.xe-auth--hrms){height:100%;overflow:hidden}
+  .xe-auth--hrms{height:100dvh;min-height:0;overflow:hidden}
+  .xe-auth--hrms .xe-brand{padding:42px 44px}
+  .xe-auth--hrms .xe-auth-main{padding-top:40px;padding-bottom:32px}
+  .xe-auth--hrms .xe-card{padding:38px;transform:translateY(clamp(10px,2.5vh,24px))}
+  .xe-auth--hrms .xe-card::before{width:76px;height:7px;margin-bottom:20px}
+  .xe-auth--hrms .xe-hrms-logo{width:86px;height:78px;margin-bottom:18px}
+  .xe-auth--hrms .xe-card h1{font-size:29px}.xe-auth--hrms .xe-sub{margin-bottom:19px;font-size:15px}
+  .xe-auth--hrms .xe-form label{margin:14px 0 7px;font-size:15px}
+  .xe-auth--hrms .xe-input{height:49px;font-size:15px}.xe-auth--hrms .xe-row{margin-top:14px}
+  .xe-auth--hrms .xe-submit{height:49px;margin-top:20px;font-size:15px}
+  .xe-auth--hrms .xe-outline{height:40px;margin-top:14px;font-size:13px}
+}
+@media(min-width:901px) and (max-height:760px){
+  .xe-auth--hrms .xe-brand{padding-top:28px;padding-bottom:28px}
+  .xe-auth--hrms .xe-brand h2{font-size:32px}.xe-auth--hrms .xe-brand p{font-size:14px}
+  .xe-auth--hrms .xe-chips{gap:11px}.xe-auth--hrms .xe-chips li{font-size:13px}
+  .xe-auth--hrms .xe-auth-main{padding-top:24px}.xe-auth--hrms .xe-card{padding:24px;transform:translateY(0)}.xe-auth--hrms .xe-card::before{width:62px;height:6px;margin-bottom:13px}.xe-auth--hrms .xe-hrms-logo{width:68px;height:60px;margin-bottom:11px}
+  .xe-auth--hrms .xe-card h1{font-size:25px}.xe-auth--hrms .xe-sub{margin-bottom:13px}
+  .xe-auth--hrms .xe-form label{margin:10px 0 5px}.xe-auth--hrms .xe-input{height:43px}
+  .xe-auth--hrms .xe-submit{height:44px;margin-top:15px}.xe-auth--hrms .xe-outline{height:36px;margin-top:10px}
+}
+
+/* Mail sign-in is intentionally denser than the HRMS sign-in so that its
+   optional recovery controls remain usable without a desktop page scroll. */
+@media(min-width:901px){
+  html:has(.xe-auth--mail),body:has(.xe-auth--mail),#root:has(.xe-auth--mail){height:100%;overflow:hidden}
+  .xe-auth--mail{height:100dvh;min-height:0;overflow:hidden}
+  .xe-auth--mail .xe-brand{max-width:600px;padding:38px 46px;gap:22px}.xe-auth--mail .xe-brand-top{font-size:17px}.xe-auth--mail .xe-tile{width:48px;height:48px}.xe-auth--mail .xe-tile img{width:32px}
+  .xe-auth--mail .xe-brand-mid{gap:20px}.xe-auth--mail .xe-brand h2{margin-bottom:10px;font-size:clamp(27px,3vw,38px)}.xe-auth--mail .xe-brand p{font-size:14px;line-height:1.45}.xe-auth--mail .xe-chips{gap:7px}.xe-auth--mail .xe-chips li{padding:6px 10px;font-size:11px}
+  .xe-auth--mail .xe-pv{height:245px;max-width:360px}.xe-auth--mail .xe-pv:not(.xe-pv-apps) .xe-pv-inbox{width:255px;border-radius:13px}.xe-auth--mail .xe-pv-head{padding:10px 12px}.xe-auth--mail .xe-pv-head b{font-size:12px}.xe-auth--mail .xe-pv-row{gap:8px;padding:9px 12px}.xe-auth--mail .xe-pv-row i{width:28px;height:28px;font-size:9px}.xe-auth--mail .xe-pv-row b{font-size:10px}.xe-auth--mail .xe-pv-row em,.xe-auth--mail .xe-pv-row small{font-size:9px}.xe-auth--mail .xe-pv-compose{top:82px;width:205px;border-radius:12px}.xe-auth--mail .xe-pv-ch,.xe-auth--mail .xe-pv-line{padding:7px 11px;font-size:9px}.xe-auth--mail .xe-pv-bars{height:48px;padding:9px 11px}.xe-auth--mail .xe-pv-send{padding:3px 11px 10px}.xe-auth--mail .xe-pv-send span{padding:5px 12px;font-size:9px}.xe-auth--mail .xe-pv-send small{font-size:8px}.xe-auth--mail .xe-pv-toast{left:12px;padding:7px 10px;font-size:9px}
+  .xe-auth--mail .xe-auth-main{padding:30px 20px}.xe-auth--mail .xe-card{width:min(405px,100%);padding:27px;border-radius:18px}.xe-auth--mail .xe-card h1{font-size:22px}.xe-auth--mail .xe-sub{margin:3px 0 15px;font-size:13px}.xe-auth--mail .xe-form label{margin:11px 0 5px;font-size:12px}.xe-auth--mail .xe-input{height:40px;border-radius:9px;font-size:13px}.xe-auth--mail .xe-row{margin-top:11px}.xe-auth--mail .xe-link{font-size:11px}.xe-auth--mail .xe-eye{height:36px;width:36px}.xe-auth--mail .xe-help,.xe-auth--mail .xe-alert{padding:9px 11px;border-radius:9px;font-size:11px}.xe-auth--mail .xe-check{gap:8px;margin-top:10px!important;font-size:11px}.xe-auth--mail .xe-check input{width:15px;height:15px;min-width:15px}.xe-auth--mail .xe-check small{font-size:9px}.xe-auth--mail .xe-submit{height:41px;margin-top:14px;border-radius:9px;font-size:13px}.xe-auth--mail .xe-foot{margin-top:13px;font-size:10px}.xe-auth--mail .xe-outline{height:33px;margin-top:11px;font-size:11px}
+}
+@media(min-width:901px) and (max-height:760px){
+  .xe-auth--mail .xe-brand{padding:24px 34px}.xe-auth--mail .xe-brand h2{font-size:28px}.xe-auth--mail .xe-brand p{font-size:12px}.xe-auth--mail .xe-chips{display:none}
+  .xe-auth--mail .xe-brand-mid{gap:14px;width:min(100%,335px)}.xe-auth--mail .xe-pv{display:block;width:100%;max-width:335px;height:166px}
+  .xe-auth--mail .xe-pv:not(.xe-pv-apps) .xe-pv-inbox{width:220px;border-radius:11px}.xe-auth--mail .xe-pv-head{min-height:35px;padding:6px 9px}.xe-auth--mail .xe-pv-head b{font-size:10px}.xe-auth--mail .xe-pv-head span{padding:1px 6px;font-size:8px}
+  .xe-auth--mail .xe-pv-row{min-height:43px;gap:6px;padding:6px 9px}.xe-auth--mail .xe-pv-row i{width:22px;height:22px;font-size:7px}.xe-auth--mail .xe-pv-row b{font-size:8px}.xe-auth--mail .xe-pv-row em,.xe-auth--mail .xe-pv-row small{font-size:7px}
+  .xe-auth--mail .xe-pv-compose{top:62px;width:160px;border-radius:10px}.xe-auth--mail .xe-pv-ch,.xe-auth--mail .xe-pv-line{padding:5px 8px;font-size:7px}.xe-auth--mail .xe-pv-line span{padding:1px 5px}.xe-auth--mail .xe-pv-bars{display:none}.xe-auth--mail .xe-pv-send{padding:5px 8px 7px}.xe-auth--mail .xe-pv-send span{padding:4px 8px;font-size:7px}.xe-auth--mail .xe-pv-send small{font-size:6px}
+  .xe-auth--mail .xe-auth-main{padding:18px}.xe-auth--mail .xe-card{padding:21px}.xe-auth--mail .xe-card h1{font-size:19px}.xe-auth--mail .xe-sub{margin-bottom:10px}.xe-auth--mail .xe-form label{margin:8px 0 4px}.xe-auth--mail .xe-input{height:35px}.xe-auth--mail .xe-submit{height:36px;margin-top:10px}.xe-auth--mail .xe-foot{margin-top:9px}.xe-auth--mail .xe-outline{height:30px;margin-top:8px}
+}
+
+/* A contained composition: the illustrative Inbox and compose card always
+   remain fully inside the green panel instead of being cropped at the edge. */
+@media(min-width:901px) and (min-height:761px){
+  .xe-auth--mail .xe-brand-mid{width:min(100%,430px);gap:24px}
+  .xe-auth--mail .xe-pv{width:100%;max-width:430px;height:218px;margin-top:2px}
+  .xe-auth--mail .xe-pv:not(.xe-pv-apps) .xe-pv-inbox{width:286px;border-radius:14px}
+  .xe-auth--mail .xe-pv-head{min-height:45px;padding:8px 12px}
+  .xe-auth--mail .xe-pv-head b{font-size:12px}.xe-auth--mail .xe-pv-head span{padding:2px 8px;font-size:9px}
+  .xe-auth--mail .xe-pv-row{min-height:55px;gap:8px;padding:8px 12px}
+  .xe-auth--mail .xe-pv-row i{width:27px;height:27px;font-size:8px}.xe-auth--mail .xe-pv-row b{font-size:10px}.xe-auth--mail .xe-pv-row em,.xe-auth--mail .xe-pv-row small{font-size:8.5px}
+  .xe-auth--mail .xe-pv-compose{right:0;top:82px;width:205px;border-radius:13px}
+  .xe-auth--mail .xe-pv-ch{padding:7px 10px;font-size:9.5px}.xe-auth--mail .xe-pv-line{padding:7px 10px;font-size:8.5px}.xe-auth--mail .xe-pv-line span{padding:2px 7px}
+  .xe-auth--mail .xe-pv-bars{display:none}.xe-auth--mail .xe-pv-send{padding:7px 10px 9px}.xe-auth--mail .xe-pv-send span{padding:5px 11px;font-size:8.5px}.xe-auth--mail .xe-pv-send small{font-size:7.5px}
+}
+
+/* Webmail sign-in motion: one calm, deliberate arrival sequence. */
+@keyframes xe-mail-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes xe-mail-slide{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes xe-mail-card-in{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes xe-mail-compose-enter{from{opacity:0;transform:translate(16px,12px) scale(.96)}to{opacity:1;transform:translate(0,0) scale(1)}}
+.xe-auth--mail .xe-brand-top{animation:xe-mail-slide .5s cubic-bezier(.2,.8,.2,1) both}
+.xe-auth--mail .xe-brand-mid{animation:xe-mail-slide .55s cubic-bezier(.2,.8,.2,1) .1s both}
+.xe-auth--mail .xe-brand>small{animation:xe-mail-rise .4s ease-out .2s both}
+.xe-auth--mail .xe-pv-inbox{animation:xe-mail-rise .58s cubic-bezier(.2,.8,.2,1) .28s both}
+.xe-auth--mail .xe-pv-compose{animation:xe-mail-compose-enter .55s cubic-bezier(.2,.8,.2,1) .48s both;transition:transform .2s ease,box-shadow .2s ease}
+.xe-auth--mail .xe-pv:hover .xe-pv-compose{transform:translateY(-4px);box-shadow:0 14px 28px rgba(0,0,0,.18)}
+.xe-auth--mail .xe-card{animation:xe-mail-card-in .52s cubic-bezier(.2,.8,.2,1) .18s both}
+.xe-auth--mail .xe-card h1,.xe-auth--mail .xe-sub,.xe-auth--mail .xe-form,.xe-auth--mail .xe-foot,.xe-auth--mail .xe-outline{animation:xe-mail-rise .38s ease-out .34s both}
+.xe-auth--mail .xe-input{transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease,background-color .18s ease}
+.xe-auth--mail .xe-input:hover{border-color:#9FC6AA}.xe-auth--mail .xe-input:focus{transform:translateY(-1px);border-color:#14703B;box-shadow:0 0 0 4px rgba(20,112,59,.13)}
+.xe-auth--mail .xe-eye,.xe-auth--mail .xe-link{transition:transform .18s ease,color .18s ease,background-color .18s ease}
+.xe-auth--mail .xe-eye:hover{transform:scale(1.07)}.xe-auth--mail .xe-link:hover{color:#0D5B30;transform:translateX(2px)}
+.xe-auth--mail .xe-submit{transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
+.xe-auth--mail .xe-submit:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.03);box-shadow:0 10px 22px rgba(13,91,48,.24)}
+.xe-auth--mail .xe-submit:active:not(:disabled){transform:translateY(0);box-shadow:0 3px 8px rgba(13,91,48,.18)}
+.xe-auth--mail .xe-outline{transition:transform .18s ease,background-color .18s ease,border-color .18s ease}.xe-auth--mail .xe-outline:hover{transform:translateY(-1px);background:#EAF5ED;border-color:#8BB89A}
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .xe-brand{display:none}.xe-mlogo{display:block}.xe-card{padding:28px 22px}
+  .xe-auth--hrms .xe-hrms-logo{display:block}
+  .grid{grid-template-columns:1fr}.shell{flex-direction:column}
+  .side{width:100%;border-right:0;border-bottom:1px solid var(--line)}
+  .page,.top{padding:20px}.hero{padding:22px 20px 26px}.clock{position:static;text-align:left;margin-top:18px}
+}
+@media(prefers-reduced-motion:reduce){.xe-spin{animation-duration:2s}.xe-auth--hrms *,.xe-auth--mail *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* ---------- compact desktop density ----------
+   Keeps every HRMS, admin and login screen aligned with the Webmail density. */
+@media(min-width:761px){
+  body{font-size:10px}.btn{min-height:30px;padding:6px 12px;font-size:10px}.ic{width:27px;height:27px}
+  .wrap{max-width:787px;padding:19px 16px}.hero{border-radius:13px;padding:19px 21px 21px}.hero::before{right:-60px;top:-60px;width:200px;height:200px}.pill{padding:6px 12px;font-size:10px}.date{margin-top:21px;font-size:9px}.greet{font-size:clamp(20px,3.3vw,33px)}.clock{right:21px;bottom:20px}.clock div{font-size:clamp(23px,3.3vw,39px)}.apps{margin-top:19px}.grid{gap:12px}.app{padding:15px;border-radius:13px}.tile{width:37px;height:37px;border-radius:11px}.app b{font-size:12px}.app span{font-size:9px}.app .go{width:29px;height:29px}
+  .side{width:176px;padding:13px 9px}.brand{padding:0 5px 11px;margin-bottom:5px}.brand b{font-size:12px}.brand span,.sec{font-size:8px}.sec{margin:9px 0 5px}.nav{gap:8px;padding:8px 11px;border-radius:15px;font-size:10px}.top{padding:9px 21px}.top .r{gap:7px}.av{width:28px;height:28px;font-size:10px}.page{max-width:773px;padding:21px}.page h1{font-size:19px}.page>p{font-size:10px}.tabs{gap:4px;margin-bottom:15px}.tab{padding:7px 12px;font-size:10px}.box{border-radius:13px}.bh{font-size:11px;padding:13px 16px}th{font-size:8px;padding:8px 16px}td{padding:11px 16px;font-size:10px}.st{padding:3px 8px;font-size:8px}.empty{padding:37px 13px}.md{padding:19px;border-radius:13px}.md h3{font-size:14px}.toast{padding:8px 13px;border-radius:8px;font-size:10px}
+}
+
+/* small polish */
+.page a{color:var(--green);font-weight:600}
+.bh .btn,.bh .btn.dark{font-size:14px}
+.bh{font-size:17px}
+
+/* Keep the compact desktop values above authoritative. The generic polish
+   declarations intentionally stay outside this query for phone/tablet use. */
+@media(min-width:761px){
+  .bh{font-size:11px}
+  .bh .btn,.bh .btn.dark{font-size:10px}
+}
+
+/* ---------- Home launcher: desktop-fit, readable, and deliberately calm ---------- */
+@keyframes xe-home-hero-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes xe-home-card-in{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(min-width:761px){
+  html:has(.wrap),body:has(.wrap),#root:has(.wrap){height:100%;overflow:hidden}
+  .wrap{width:100%;max-width:820px;min-height:100dvh;height:100dvh;margin:0 auto;padding:20px 18px;display:flex;flex-direction:column;justify-content:center;gap:18px}
+  .hero{min-height:258px;padding:24px 28px;border-radius:18px;box-shadow:0 8px 24px rgba(16,35,26,.08);animation:xe-home-hero-in .42s cubic-bezier(.2,.8,.2,1) both}
+  .hero::before{right:-68px;top:-68px;width:220px;height:220px}.hero .logo{width:38px;height:38px;border-radius:10px}.hero .home-brand b{font-size:16px!important;letter-spacing:-.01em}
+  .hero .pill{min-height:34px;padding:6px 12px;font-size:10.5px;transition:background-color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+  .hero .pill:hover{transform:translateY(-1px);box-shadow:0 5px 12px rgba(16,35,26,.1)}
+  .date{margin-top:24px;font-size:10.5px;letter-spacing:.09em}.greet{font-size:clamp(29px,3.2vw,39px);line-height:1.09;margin-top:8px}.clock{right:28px;bottom:25px}.clock div{font-size:clamp(34px,4vw,48px)}.clock span{margin-top:4px;font-size:10px}
+  .apps{width:100%;margin:0}.apps h3{margin:0 0 11px;font-size:10.5px;letter-spacing:.11em}.apps h3 span{padding:3px 9px!important;font-size:10px}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.app{min-height:82px;padding:15px 16px;border-radius:15px;gap:12px;box-shadow:0 4px 12px rgba(16,35,26,.07);transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s ease,border-color .2s ease,background-color .2s ease;animation:xe-home-card-in .36s cubic-bezier(.2,.8,.2,1) both}.app:nth-child(1){animation-delay:.06s}.app:nth-child(2){animation-delay:.11s}.app:nth-child(3){animation-delay:.16s}.app:nth-child(4){animation-delay:.21s}.app:nth-child(5){animation-delay:.26s}
+  .tile{width:39px;height:39px;border-radius:12px;transition:transform .2s ease}.app b{font-size:13.5px;line-height:1.2}.app span{margin-top:3px;font-size:10.5px;line-height:1.35}.app .go{width:30px;height:30px;transition:transform .2s ease,background-color .2s ease}
+  @media(hover:hover){.app:hover{transform:translateY(-3px);border-color:#92B9A0;background:#FEFFFE;box-shadow:0 12px 22px rgba(16,35,26,.13)}.app:hover .tile{transform:scale(1.06)}.app:hover .go{transform:translateX(3px);background:#CFEADB}}
+  .app:focus-visible{outline:3px solid rgba(22,101,52,.45);outline-offset:3px}
+}
+
+/* Give the app launcher its own quiet mint canvas.  It makes the white hero
+   and application cards read as deliberate surfaces rather than blending
+   into the page background. */
+:root:not([data-theme="dark"]):has(.wrap),
+:root:not([data-theme="dark"]) body:has(.wrap){
+  background:radial-gradient(900px 420px at 12% 5%,#F8FCF9 0%,rgba(248,252,249,0) 66%),
+             linear-gradient(135deg,#E4F1E8 0%,#EDF6F0 48%,#E2F0E8 100%);
+}
+@media(min-width:761px) and (max-height:760px){
+  .wrap{padding-top:12px;padding-bottom:12px;gap:11px}.hero{min-height:205px;padding:17px 22px}.date{margin-top:14px}.greet{font-size:29px}.clock{right:22px;bottom:17px}.clock div{font-size:34px}.apps h3{margin-bottom:7px}.grid{gap:9px}.app{min-height:64px;padding:10px 12px}.tile{width:32px;height:32px}.app b{font-size:12px}.app span{font-size:9.5px}.app .go{width:27px;height:27px}
+}
+@media(prefers-reduced-motion:reduce){.wrap .hero,.wrap .app{animation:none!important;transition:none!important}}
+
+/* Wide desktops: use the available workspace rather than leaving a floating
+   narrow launcher in the middle of the screen. */
+@media(min-width:1100px){
+  .wrap{max-width:1120px;padding:28px 22px;justify-content:flex-start;gap:18px}
+  .hero{min-height:272px;padding:26px 30px}.hero::before{right:-74px;top:-74px;width:235px;height:235px}
+  .grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}
+  .app{min-height:102px;padding:14px 13px;gap:10px}.tile{width:38px;height:38px}.app b{font-size:12.5px}.app span{font-size:10px}.app .go{width:29px;height:29px}
+}
+
+/* ---------- Comfortable desktop scale + shared interaction language ---------- */
+@media(min-width:761px){
+  body{font-size:11.5px}.btn{min-height:34px;padding:7px 14px;font-size:11px}.ic{width:31px;height:31px}
+  input,select{height:39px;padding:0 11px;font-size:11.5px}label{font-size:11.5px}
+  .side{width:194px;padding:15px 10px}.brand{padding:0 7px 12px;margin-bottom:7px}.brand b{font-size:13.5px}.brand span,.sec{font-size:9px}.sec{margin:11px 0 6px}.nav{padding:9px 12px;border-radius:16px;font-size:11px}
+  .top{padding:11px 24px}.top .r{gap:8px}.av{width:32px;height:32px;font-size:11px}.page{max-width:840px;padding:24px}.page h1{font-size:22px}.page>p{font-size:11.5px}.tabs{gap:5px;margin-bottom:17px}.tab{padding:8px 14px;font-size:11px}.box{border-radius:15px}.bh{font-size:12.5px;padding:15px 18px}th{font-size:9px;padding:9px 18px}td{padding:12px 18px;font-size:11.5px}.st{padding:4px 9px;font-size:9px}.empty{padding:40px 15px}.md{padding:22px;border-radius:15px}.md h3{font-size:16px}.toast{padding:9px 14px;border-radius:9px;font-size:11px}
+}
+@media(hover:hover) and (pointer:fine){
+  .btn:not(:disabled):hover,.pill:not(:disabled):hover{box-shadow:0 6px 14px rgba(16,35,26,.1)}
+  .nav:hover{transform:translateX(2px)}.tab:hover{transform:translateY(-1px)}.ic:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(16,35,26,.08)}
+  .box{transition:box-shadow .2s ease,border-color .2s ease}.box:hover{border-color:#B8D3C0;box-shadow:0 7px 18px rgba(16,35,26,.08)}
+}
+
+/* Home dashboard summary: facts first, then the app launcher. */
+.launcher-metrics{width:100%;animation:xe-home-card-in .36s cubic-bezier(.2,.8,.2,1) .08s both}
+.launcher-metrics h3{margin:0 0 10px;color:#526C5E;font-size:11px;letter-spacing:.11em;font-weight:700}
+.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.metric-card{min-width:0;min-height:76px;display:flex;align-items:center;gap:11px;padding:12px 14px;background:#fff;border:1px solid #DDEAE2;border-radius:15px;box-shadow:0 5px 15px rgba(16,35,26,.06)}
+.metric-icon{width:36px;height:36px;flex:none;display:grid;place-items:center;border-radius:11px}.metric-card.mint .metric-icon{background:#DDF0E4;color:#166534}.metric-card.blue .metric-icon{background:#DCE9FC;color:#235B9C}.metric-card.peach .metric-icon{background:#FCE0D6;color:#B5482A}.metric-card.lavender .metric-icon{background:#EAE1FB;color:#6745AA}
+.metric-card b{display:block;color:#10231A;font-size:20px;line-height:1.05;letter-spacing:-.03em}.metric-card span{display:block;margin-top:3px;color:#63776C;font-size:10px;line-height:1.25}
+.app-badge{display:table;margin-top:5px;padding:3px 7px;border-radius:999px;background:#E3F3E9;color:#176C3D;font-size:8.5px;font-style:normal;font-weight:700;line-height:1}
+@media(min-width:761px){
+  .wrap:has(.launcher-metrics){gap:13px}
+  .wrap:has(.launcher-metrics) .hero{min-height:225px;padding-top:22px;padding-bottom:22px}
+  .wrap:has(.launcher-metrics) .date{margin-top:20px}.wrap:has(.launcher-metrics) .greet{font-size:clamp(27px,3vw,37px)}
+  .wrap:has(.launcher-metrics) .clock{bottom:22px}.wrap:has(.launcher-metrics) .apps h3{margin-bottom:9px}
+  .wrap:has(.launcher-metrics) .app{min-height:88px}.wrap:has(.launcher-metrics) .app span{font-size:9.5px}
+}
+@media(min-width:1100px){
+  .wrap:has(.launcher-metrics){max-width:1280px;padding-top:22px}.wrap:has(.launcher-metrics) .hero{min-height:230px}
+  .wrap:has(.launcher-metrics) .app{min-height:90px}
+}
+@media(min-width:761px) and (max-height:760px){
+  .wrap:has(.launcher-metrics){gap:8px}.wrap:has(.launcher-metrics) .hero{min-height:165px;padding:15px 20px}.wrap:has(.launcher-metrics) .date{margin-top:10px}.wrap:has(.launcher-metrics) .greet{font-size:25px}.wrap:has(.launcher-metrics) .clock{bottom:14px}.wrap:has(.launcher-metrics) .clock div{font-size:29px}
+  .launcher-metrics h3{margin-bottom:6px;font-size:9px}.metric-grid{gap:8px}.metric-card{min-height:52px;padding:7px 9px;border-radius:11px}.metric-icon{width:27px;height:27px;border-radius:8px}.metric-icon svg{width:17px;height:17px}.metric-card b{font-size:15px}.metric-card span{margin-top:1px;font-size:8px}.wrap:has(.launcher-metrics) .apps h3{margin-bottom:5px}.wrap:has(.launcher-metrics) .app{min-height:58px;padding:9px 10px}.wrap:has(.launcher-metrics) .tile{width:29px;height:29px}.wrap:has(.launcher-metrics) .app b{font-size:11px}.wrap:has(.launcher-metrics) .app span,.wrap:has(.launcher-metrics) .app-badge{display:none}
+}
+@media(max-width:760px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric-card{min-height:70px}.launcher-metrics{margin-top:4px}}
+
+/* Portal home — application launcher, intentionally separate from module pages. */
+.portal-home{max-width:1136px!important;justify-content:flex-start!important;gap:16px!important;padding-top:22px!important;background:transparent}
+.portal-header{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:54px}
+.portal-brand{display:flex;align-items:center;gap:12px;white-space:nowrap}.portal-brand .logo{width:46px;height:46px;padding:0;border-radius:0;background:transparent;overflow:visible}.portal-brand .logo img{display:block;width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}.portal-brand b{font-size:20px!important;font-weight:750;letter-spacing:-.035em;color:#0F2419}
+.portal-search{display:flex;align-items:center;min-width:0;max-width:490px;width:100%;height:44px;margin:0;justify-self:center;border:1px solid #DCE8E1;border-radius:14px;background:rgba(255,255,255,.85);box-shadow:0 3px 10px rgba(16,35,26,.04);color:#60776A}
+.portal-search:focus-within{border-color:#14703B;box-shadow:0 0 0 3px rgba(20,112,59,.14)}.portal-search-icon{font-size:25px;line-height:1;margin:0 11px 2px 15px}.portal-search input{width:100%;height:100%;border:0!important;outline:0!important;padding:0 15px 0 0!important;background:transparent!important;color:#0F2419;font-size:14px!important}.portal-search input::placeholder{color:#75887E}
+.portal-actions{display:flex;align-items:center;gap:10px}.portal-bell{width:44px!important;height:44px!important;border:1px solid #DCE8E1!important;border-radius:14px!important;background:#fff!important;color:#0F2419!important;justify-content:center;padding:0!important}.portal-bell:hover{background:#E7F5EC!important}.portal-signout{height:42px;padding:0 17px;border:1px solid #DCE8E1;border-radius:13px;background:#fff;color:#0F2419;font-size:14px;font-weight:700}.portal-signout:hover{border-color:#9DC7AA;background:#E7F5EC}
+.portal-home .hero{min-height:270px;padding:34px 44px;border:1px solid #E0ECE4;border-radius:24px;background:#fff;color:#0F2419;box-shadow:0 12px 30px rgba(16,35,26,.08);overflow:hidden}.portal-home .hero::before{right:-93px;top:-98px;width:340px;height:340px;background:#DFF2E7}.portal-home .date{margin:0;color:#718177;font-size:13px;font-weight:600;letter-spacing:0;text-transform:none}.portal-home .greet{max-width:620px;margin:12px 0 0;color:#0F2419;font-size:clamp(33px,3.4vw,49px);line-height:1.12;letter-spacing:-.045em}.portal-home .greet b{display:inline;color:#14703B}.hero-ready{margin:12px 0 0;color:#63776C;font-size:16px}.portal-home .clock{right:44px;bottom:48px;text-align:right}.portal-home .clock div{color:#0F2419;font-size:clamp(42px,4.1vw,57px)}.portal-home .clock small{color:#14703B}.portal-home .clock span{color:#63776C;font-size:12px;letter-spacing:.1em}
+.portal-home .apps{margin:0;width:100%}.portal-home .apps h3{margin:0 0 12px;color:#50675A;font-size:15px;font-weight:700;letter-spacing:0;text-transform:none}.portal-home .apps h3 span{display:inline-grid!important;place-items:center;min-width:27px;height:25px;margin-left:6px;padding:0 8px!important;background:#DDF1E4!important;color:#14703B!important;border-radius:999px!important;font-size:13px;font-weight:700;vertical-align:middle}.portal-home .grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}.portal-home .app{position:relative;display:block;min-height:174px;padding:18px;border:1px solid #DFEAE3;border-radius:20px;background:#fff;color:#0F2419;box-shadow:0 6px 16px rgba(16,35,26,.06);text-align:left;overflow:hidden}.portal-home .tile{width:48px;height:48px;border-radius:14px}.portal-home .go{position:absolute;right:18px;top:18px;width:38px;height:38px;margin:0;border:0;background:#E1F2E7;color:#146A38;transition:transform .2s ease,background-color .2s ease,color .2s ease}.portal-home .app-copy{margin-top:22px}.portal-home .app b{font-size:16px;line-height:1.2;color:#0F2419}.portal-home .app span{display:block;margin-top:7px;color:#62766B;font-size:13px;line-height:1.45}.portal-home .app:focus-visible{outline:3px solid rgba(20,112,59,.5);outline-offset:3px}.portal-empty{padding:30px;border:1px dashed #B8D2C0;border-radius:16px;background:rgba(255,255,255,.6);color:#526C5E;text-align:center}
+@media(hover:hover) and (pointer:fine){.portal-home .app:hover{transform:translateY(-4px);border-color:#A3CBB0;box-shadow:0 15px 27px rgba(16,35,26,.13)}.portal-home .app:hover .go{background:#14703B;color:#fff;transform:translateX(2px)}}
+:root[data-theme="dark"] .portal-header,:root[data-theme="dark"] .portal-home .hero,:root[data-theme="dark"] .portal-home .app,:root[data-theme="dark"] .portal-signout{background:#16201B}:root[data-theme="dark"] .portal-brand b,:root[data-theme="dark"] .portal-home .greet,:root[data-theme="dark"] .portal-home .clock div,:root[data-theme="dark"] .portal-home .app b{color:#E6F0EA}:root[data-theme="dark"] .portal-home .hero{border-color:#2A3A32}:root[data-theme="dark"] .portal-home .hero::before{background:#1F3A2B}:root[data-theme="dark"] .portal-signout{color:#E6F0EA}:root[data-theme="dark"] .portal-home .app{border-color:#2A3A32}:root[data-theme="dark"] .portal-home .app span,:root[data-theme="dark"] .hero-ready,:root[data-theme="dark"] .portal-home .date{color:#9DB0A5}
+@media(max-width:900px){.portal-home{height:auto!important;min-height:100dvh!important;overflow:visible!important;padding:18px!important}.portal-home .hero{min-height:245px;padding:30px 26px}.portal-home .clock{right:26px;bottom:29px}.portal-home .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+@media(max-width:560px){.portal-home{gap:15px!important;padding:14px!important}.portal-brand b{font-size:17px!important}.portal-actions{gap:7px}.portal-signout{padding:0 12px;font-size:13px}.portal-home .hero{min-height:285px;padding:27px 21px;border-radius:19px}.portal-home .hero::before{right:-100px;top:-100px;width:250px;height:250px}.portal-home .greet{font-size:33px}.hero-ready{font-size:14px;max-width:200px}.portal-home .clock{right:21px;bottom:25px}.portal-home .clock div{font-size:39px}.portal-home .grid{grid-template-columns:1fr}.portal-home .app{min-height:134px}.portal-home .app-copy{margin-top:17px}}
+
