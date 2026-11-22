@@ -386,6 +386,22 @@
   min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
 .wm-module-form textarea{min-height:110px}
 .wm-module-form>div{display:flex;flex-wrap:wrap;gap:10px}
+.wm-settings-form{max-width:760px;gap:16px;margin-top:0}
+.wm-settings-intro{display:block!important;padding:2px 2px 4px}
+.wm-settings-eyebrow{display:block;color:var(--brand);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.wm-settings-intro p{margin:5px 0 0;color:var(--mut);font-size:14px;line-height:1.5}
+.wm-settings-section{display:grid;gap:14px;padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--card);box-shadow:var(--shadow)}
+.wm-settings-section-heading h2{font-size:16px}
+.wm-settings-section-heading p{margin:4px 0 0;color:var(--mut);font-size:13px;line-height:1.45}
+.wm-settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.wm-settings-form label{font-weight:600;color:var(--ink)}
+.wm-settings-form label textarea,.wm-settings-form label select,.wm-settings-form label input:not([type=checkbox]){margin-top:1px;font-weight:400}
+.wm-settings-form textarea{min-height:104px;resize:vertical}
+.wm-settings-form .wm-setting-check{display:flex;align-items:flex-start;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--soft) 38%,var(--card))}
+.wm-settings-form .wm-setting-check input{margin-top:3px}
+.wm-setting-check span{display:grid;gap:3px}
+.wm-setting-check small{color:var(--mut);font-weight:400;line-height:1.4}
+.wm-settings-form>div:last-child{position:sticky;bottom:0;padding:12px 0 2px;background:linear-gradient(transparent,var(--bg) 30%)}
 .wm-module-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px}
 .wm-module-items article{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--card);box-shadow:var(--shadow)}
 .wm-module-items p{overflow-wrap:anywhere}
@@ -456,6 +472,8 @@
     right:12px;left:auto;width:min(520px,calc(100vw - 24px));bottom:12px;
     max-height:min(620px,calc(100dvh - 24px));border-radius:16px}
   .wm-module{padding:8px 14px 24px}
+  .wm-settings-grid{grid-template-columns:1fr}
+  .wm-settings-section{padding:16px}
 }
 @media(max-width:430px){
   .wm-theme-toggle{display:none!important}
