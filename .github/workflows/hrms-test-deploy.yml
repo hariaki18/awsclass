@@ -1,0 +1,89 @@
+name: Deploy HRMS Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hrms-test-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Build and test
+        working-directory: backend
+        run: |
+          chmod +x mvnw
+          ./mvnw --batch-mode clean package
+
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.HRMS_TEST_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.HRMS_TEST_KNOWN_HOSTS }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/hrms_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/hrms_key ~/.ssh/known_hosts
+
+      - name: Upload JAR
+        env:
+          HOST: ${{ secrets.HRMS_TEST_HOST }}
+          USER: ${{ secrets.HRMS_TEST_USER }}
+        run: |
+          scp -i ~/.ssh/hrms_key \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -o ConnectTimeout=15 \
+            backend/target/xpertsedge-hrms-backend-1.0.0.jar \
+            "$USER@$HOST:/home/ubuntu/hrms-upload.jar"
+
+      - name: Deploy and check health
+        env:
+          HOST: ${{ secrets.HRMS_TEST_HOST }}
+          USER: ${{ secrets.HRMS_TEST_USER }}
+        run: |
+          ssh -i ~/.ssh/hrms_key \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -o ConnectTimeout=15 \
+            "$USER@$HOST" 'bash -se' <<'REMOTE'
+          sudo install -o root -g hrms -m 640 \
+            /home/ubuntu/hrms-upload.jar /opt/hrms/app.jar
+          sudo systemctl restart hrms
+
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent --max-time 3 \
+              http://127.0.0.1:8081/actuator/health |
+              grep -q '"status":"UP"'; then
+              echo "HRMS deployment healthy"
+              rm -f /home/ubuntu/hrms-upload.jar
+              exit 0
+            fi
+            sleep 3
+          done
+
+          echo "HRMS health check failed; inspect the service on EC2."
+          exit 1
+          REMOTE
+
+      - name: Remove SSH key
+        if: always()
+        run: rm -f ~/.ssh/hrms_key
