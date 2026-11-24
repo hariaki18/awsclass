@@ -75,7 +75,7 @@ export function Webmail({user,home,canReturnToHrms=false,out,expired}) {
   }
   useEffect(()=>{serial.current++;abort.current?.abort();pages.current=1;setLoading(true);setRecords([]);setTotal(0);setHasMore(false);const timer=setTimeout(refresh,200);return()=>clearTimeout(timer);},[folder,query]);
   useEffect(()=>{if(panel!=='Mail')return;const timer=setInterval(refresh,10000);return()=>{clearInterval(timer);abort.current?.abort();};},[panel]);
-  useEffect(()=>{const shortcut=event=>{if(preferences.shortcuts&&!['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName)){if(event.key==='/'){event.preventDefault();search.current?.focus();}if(event.key.toLowerCase()==='c'){event.preventDefault();newMessage();}}if(event.key==='Escape'&&compose&&mayDiscard())setCompose(null);};window.addEventListener('keydown',shortcut);return()=>window.removeEventListener('keydown',shortcut);},[preferences.shortcuts,compose,busy]);
+  useEffect(()=>{const shortcut=event=>{if(preferences.shortcuts&&!['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName)){if(event.key==='/'){event.preventDefault();search.current?.focus();}if(event.key.toLowerCase()==='c'){event.preventDefault();newMessage();}}if(event.key==='Escape'&&compose){event.preventDefault();closeCompose();}};window.addEventListener('keydown',shortcut);return()=>window.removeEventListener('keydown',shortcut);},[preferences.shortcuts,compose,busy]);
   const dirty=compose&&draftSignature(compose)!==(compose.baseline||draftSignature(emptyDraft()));
   useEffect(()=>{const warn=event=>{if(dirty){event.preventDefault();event.returnValue='';}};window.addEventListener('beforeunload',warn);return()=>window.removeEventListener('beforeunload',warn);},[dirty]);
   useEffect(()=>{composeRef.current=compose;},[compose]);
@@ -103,6 +103,16 @@ export function Webmail({user,home,canReturnToHrms=false,out,expired}) {
     return()=>window.clearTimeout(timer);
   },[compose]);
   async function storeDraft(){if(busy)return;setBusy(true);try{const saved=await persistDraft();setCompose(null);setFolder('Drafts');setQuery('');setSearchText('');setSelected(saved.id);setMessage('Draft saved.');await refresh();}catch(error){setMessage(error.message);}finally{setBusy(false);}}
+  async function closeCompose(){
+    const snapshot=composeRef.current;
+    if(!snapshot||busy||autoSave.current.saving)return;
+    const unchanged=draftSignature(snapshot)===(snapshot.baseline||draftSignature(emptyDraft()));
+    if(unchanged){setCompose(null);return;}
+    setBusy(true);autoSave.current.saving=true;
+    try{await persistDraft(snapshot);setCompose(null);setMessage('Draft saved automatically.');await refresh();}
+    catch(error){setMessage('Draft could not be saved: '+error.message);}
+    finally{autoSave.current.saving=false;setBusy(false);}
+  }
   async function sendMessage(){if(busy)return;setBusy(true);try{const saved=await persistDraft();setCompose(saved);await mailApi('/send',{method:'POST',body:{id:saved.id,...payload(saved)}});setCompose(null);setFolder('Sent');setQuery('');setSearchText('');setSelected(saved.id);setMessage('SMTP accepted the message. See its delivery status.');await refresh();}catch(error){setMessage(error.message);await refresh();}finally{setBusy(false);}}
   async function selectMessage(record){setSelected(record.id);if(!record.seen&&record.folder!=='Drafts'){try{await mailApi('/messages/'+record.id,{method:'PATCH',body:{seen:true}});await refresh();}catch(error){setMessage(error.message);}}}
   async function updateSelected(body){if(busy)return;setBusy(true);try{await mailApi('/messages/'+selected,{method:'PATCH',body});if(body.folder)setSelected(null);await refresh();}catch(error){setMessage(error.message);}finally{setBusy(false);}}
@@ -152,7 +162,7 @@ export function Webmail({user,home,canReturnToHrms=false,out,expired}) {
             {selectedMessage.folder==='Trash'?<><button className="btn" disabled={busy} onClick={()=>updateSelected({folder:'Restore'})}>Restore</button><button className="btn danger" disabled={busy} onClick={deleteSelected}>Delete permanently</button></>:<button className="btn" disabled={busy} onClick={()=>updateSelected({folder:'Trash'})}>Move to Trash</button>}
             {['Inbox','Spam','Sent'].includes(selectedMessage.folder)&&<button className="btn" disabled={busy} onClick={()=>updateSelected({folder:'Archive'})}>Archive</button>}{['Inbox','Spam'].includes(selectedMessage.folder)&&<button className="btn" disabled={busy} onClick={()=>updateSelected({folder:selectedMessage.folder==='Spam'?'Inbox':'Spam'})}>{selectedMessage.folder==='Spam'?'Not spam':'Mark as Spam'}</button>}
           </div></article>:<div className="wm-reader-empty"><div className="wm-reader-icon"><MailIcon name="mail" size={48}/></div><h2>No conversation selected</h2><p>Choose a conversation from the list to read it here.</p></div>}</section></div></>}</main>
-    {compose&&<section className="wm-composer" aria-label="Compose message"><header><h2>{compose.forwardFromId?'Forward message':/^Re:/i.test(compose.subject)?'Reply':'New message'}</h2><button className="wm-text-button" aria-label="Close compose" disabled={busy} onClick={()=>{if(mayDiscard())setCompose(null);}}>✕</button></header><form onSubmit={event=>{event.preventDefault();storeDraft();}}>
+    {compose&&<section className="wm-composer" aria-label="Compose message"><header><h2>{compose.forwardFromId?'Forward message':/^Re:/i.test(compose.subject)?'Reply':'New message'}</h2><button className="wm-text-button" aria-label="Close compose" disabled={busy} onClick={closeCompose}>✕</button></header><form onSubmit={event=>{event.preventDefault();storeDraft();}}>
       <div className="wm-from">From <strong>{externalAllowed&&externalCompose?externalSender:user.email}</strong></div><label>To<input type="text" autoComplete="off" placeholder="alice@example.com, bob@example.com" maxLength={2000} disabled={busy} value={compose.to} onChange={event=>setCompose({...compose,to:event.target.value})}/></label>
       <label>Cc<input type="text" autoComplete="off" placeholder="Optional recipients" maxLength={2000} disabled={busy} value={compose.cc||''} onChange={event=>setCompose({...compose,cc:event.target.value})}/></label>
       <label>Subject<input maxLength={255} placeholder="Subject" disabled={busy} value={compose.subject} onChange={event=>setCompose({...compose,subject:event.target.value})}/></label>
