@@ -10,6 +10,13 @@ public class AuthInterceptor implements HandlerInterceptor {
   public AuthInterceptor(JwtService jwt, UserRepo users, @Value("${hrms.auth.origins}") String origins) { this.jwt = jwt; this.users=users; this.origins=Set.of(origins.split(",")); }
   @Override public boolean preHandle(HttpServletRequest q, HttpServletResponse r, Object h) throws Exception {
     if ("OPTIONS".equals(q.getMethod())) return true;
+    // Webhook signatures are verified by MailerSendInboundController.
+    String webhookPath = q.getRequestURI();
+    if ("POST".equals(q.getMethod())
+        && ("/api/mail/inbound".equals(webhookPath)
+            || "/api/mail/events".equals(webhookPath))) {
+      return true;
+    }
     r.setHeader("Cache-Control","no-store"); r.setHeader("X-Content-Type-Options","nosniff");
     String origin=q.getHeader("Origin");
     boolean mutation=!Set.of("GET","HEAD").contains(q.getMethod());
