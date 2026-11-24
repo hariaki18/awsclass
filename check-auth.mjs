@@ -14,6 +14,7 @@ async function request(path,{status=200,method='GET',body,cookie,token,requestOr
   const r=await fetch(base+path,{method,headers,body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(15000)});
   assert.equal(r.status,status,`${method} ${path}`); count++; return r;
 }
+//test in order
 await request('/me',{status:401});
 await request('/auth/logout',{status:401,method:'POST'});
 await request('/auth/unknown',{status:401});
