@@ -62,7 +62,7 @@ export function Webmail({user,home,canReturnToHrms=false,out,expired}) {
   const [loading,setLoading]=useState(true),[loadError,setLoadError]=useState(''),[busy,setBusy]=useState(false),[message,setMessage]=useState('');
   const [compose,setCompose]=useState(null),[selected,setSelected]=useState(null),[hasMore,setHasMore]=useState(false);
   const [collapsed,setCollapsed]=useState(()=>window.matchMedia('(max-width:760px)').matches);
-  const search=useRef(null),pages=useRef(1),serial=useRef(0),abort=useRef(null),filters=useRef({}),composeRef=useRef(null),autoSave=useRef({saving:false});
+  const search=useRef(null),pages=useRef(1),serial=useRef(0),abort=useRef(null),filters=useRef({}),composeRef=useRef(null),autoSave=useRef({saving:false}),unreadNotice=useRef({ready:false,count:0});
   filters.current={folder,query};
   const initials=(user.name||user.email).trim().split(/\s+/).slice(0,2).map(part=>part[0]).join('').toUpperCase();
   const normalize=record=>{const draft={...record,saved:true,to:record.toAddress,cc:record.ccAddress||'',from:record.fromAddress,attachments:record.attachments||[]};return {...draft,baseline:draftSignature(draft)};};
@@ -70,11 +70,20 @@ export function Webmail({user,home,canReturnToHrms=false,out,expired}) {
     const request=++serial.current;abort.current?.abort();const controller=new AbortController();abort.current=controller;
     const filter=filters.current,params=new URLSearchParams({folder:filter.query||filter.folder==='All'?'':filter.folder,q:filter.query});
     try{const all=[];let result;for(let page=0;page<pages.current;page++){result=await mailApi('/messages?'+params+'&page='+page,{signal:controller.signal});all.push(...result.messages);if(!result.hasMore)break;}
-      if(request!==serial.current||filter.folder!==filters.current.folder||filter.query!==filters.current.query)return;setRecords(all.map(normalize));setCounts(result.counts||{});setUnread(result.unread||0);setTotal(result.total);setHasMore(result.hasMore);setConnected(result.connected);setExternalAllowed(result.externalAllowed);setExternalSender(result.senderEmail||'');setProvider(result.provider||'');setLoadError('');
+      if(request!==serial.current||filter.folder!==filters.current.folder||filter.query!==filters.current.query)return;
+      const nextUnread=Number(result.unread||0),previousUnread=unreadNotice.current.count;
+      if(unreadNotice.current.ready&&nextUnread>previousUnread){
+        const added=nextUnread-previousUnread;
+        setMessage(`You have ${added} new ${added===1?'message':'messages'} in Inbox.`);
+        if(document.visibilityState==='hidden'&&typeof Notification!=='undefined'&&Notification.permission==='granted')new Notification('XpertsEdge Mail',{body:`You have ${added} new ${added===1?'message':'messages'} in Inbox.`});
+      }
+      unreadNotice.current={ready:true,count:nextUnread};
+      setRecords(all.map(normalize));setCounts(result.counts||{});setUnread(nextUnread);setTotal(result.total);setHasMore(result.hasMore);setConnected(result.connected);setExternalAllowed(result.externalAllowed);setExternalSender(result.senderEmail||'');setProvider(result.provider||'');setLoadError('');
     }catch(error){if(controller.signal.aborted||request!==serial.current)return;if(error.status===401)expired();else setLoadError(error.message);}finally{if(request===serial.current)setLoading(false);}
   }
   useEffect(()=>{serial.current++;abort.current?.abort();pages.current=1;setLoading(true);setRecords([]);setTotal(0);setHasMore(false);const timer=setTimeout(refresh,200);return()=>clearTimeout(timer);},[folder,query]);
   useEffect(()=>{if(panel!=='Mail')return;const timer=setInterval(refresh,10000);return()=>{clearInterval(timer);abort.current?.abort();};},[panel]);
+  useEffect(()=>{document.title=unread>0?`(${unread}) XpertsEdge Mail`:'XpertsEdge Mail';},[unread]);
   useEffect(()=>{const shortcut=event=>{if(preferences.shortcuts&&!['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName)){if(event.key==='/'){event.preventDefault();search.current?.focus();}if(event.key.toLowerCase()==='c'){event.preventDefault();newMessage();}}if(event.key==='Escape'&&compose){event.preventDefault();closeCompose();}};window.addEventListener('keydown',shortcut);return()=>window.removeEventListener('keydown',shortcut);},[preferences.shortcuts,compose,busy]);
   const dirty=compose&&draftSignature(compose)!==(compose.baseline||draftSignature(emptyDraft()));
   useEffect(()=>{const warn=event=>{if(dirty){event.preventDefault();event.returnValue='';}};window.addEventListener('beforeunload',warn);return()=>window.removeEventListener('beforeunload',warn);},[dirty]);
