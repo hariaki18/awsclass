@@ -90,27 +90,6 @@ export function Webmail({user,home,canReturnToHrms=false,out,expired}) {
   useEffect(()=>{composeRef.current=compose;},[compose]);
   function payload(draft){return {to:draft.to,cc:draft.cc||'',subject:draft.subject,body:draft.body,attachmentIds:(draft.attachments||[]).filter(file=>file.id&&!file.forward).map(file=>file.id),attachments:(draft.attachments||[]).filter(file=>file.data).map(file=>({name:file.name,contentType:file.contentType,data:file.data})),...(!draft.saved&&draft.forwardFromId?{forwardFromId:draft.forwardFromId,forwardAttachmentIds:(draft.attachments||[]).filter(file=>file.forward).map(file=>file.id)}:{})};}
   async function persistDraft(draft=compose){return normalize(await mailApi('/drafts'+(draft.saved?'/'+draft.id:''),{method:draft.saved?'PUT':'POST',body:payload(draft)}));}
-  async function saveAutomatically(){
-    const snapshot=composeRef.current;
-    if(!snapshot||autoSave.current.saving)return;
-    const signature=draftSignature(snapshot),baseline=snapshot.baseline||draftSignature(emptyDraft());
-    if(signature===baseline||(!snapshot.to.trim()&&!snapshot.cc.trim()&&!snapshot.subject.trim()&&!snapshot.body.trim()&&!(snapshot.attachments||[]).length))return;
-    autoSave.current.saving=true;
-    try{
-      const saved=await persistDraft(snapshot);
-      setCompose(current=>{
-        if(!current||current.id!==snapshot.id)return current;
-        return draftSignature(current)===signature?saved:{...current,id:saved.id,saved:true,baseline:saved.baseline};
-      });
-      setMessage('Draft saved automatically.');
-    }catch(error){setMessage('Auto-save failed: '+error.message);}
-    finally{autoSave.current.saving=false;}
-  }
-  useEffect(()=>{
-    if(!compose)return;
-    const timer=window.setTimeout(saveAutomatically,1000);
-    return()=>window.clearTimeout(timer);
-  },[compose]);
   async function storeDraft(){if(busy)return;setBusy(true);try{const saved=await persistDraft();setCompose(null);setFolder('Drafts');setQuery('');setSearchText('');setSelected(saved.id);setMessage('Draft saved.');await refresh();}catch(error){setMessage(error.message);}finally{setBusy(false);}}
   async function closeCompose(){
     const snapshot=composeRef.current;
